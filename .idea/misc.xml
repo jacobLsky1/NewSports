@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/drawable-hdpi-v4/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/font/varela_round.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_about.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/layout/fragment_matches_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/menu/bottom_navigation_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/menu/menu_main.xml" value="0.1296875" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/NewSports/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
