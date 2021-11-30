@@ -25,6 +25,10 @@ const val playerLimit = ":limit($playersQueryLimit|1)"
 
 const val chatsBatchCount = 20
 
+const val whatsappContact = "+972506745639"
+const val facebookLink = "https://web.facebook.com/ronolikeaaron"
+const val twitterLink = "http://twitter.com/Aroniez"
+
 val dirtyWords = arrayOf(
     "bad_words"
 )

@@ -16,6 +16,8 @@ class MainViewModel
     private val context: Context, private val repository: MainRepository
 ):ViewModel() {
 
+    var currentMainFragment :Int? = null
+
     private var _mainFragmentCurrentFragment:MutableLiveData<Fragment> = MutableLiveData(
         MatchesMainFragment.newInstance())
     var mainFragmentCurrentFragment: LiveData<Fragment> = _mainFragmentCurrentFragment

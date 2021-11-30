@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.main.fragments.matches
+package com.jacoblip.andriod.newsports.ui.main.fragments.leagues
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,15 +13,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MatchesMainFragment():Fragment(R.layout.matches_fragment_home) {
+class LeaguesMainFragment():Fragment(R.layout.leagues_fragment_home) {
 
     lateinit var viewModel: MainViewModel
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val fragments = arrayOf(MatchesRecentFragment.newInstance(),MatchesUpcomingFragment.newInstance())
-
     }
 
     private fun setUpObservers(){
@@ -35,8 +33,8 @@ class MatchesMainFragment():Fragment(R.layout.matches_fragment_home) {
 
 
     companion object{
-        fun newInstance(): MatchesMainFragment {
-            return MatchesMainFragment()
+        fun newInstance(): LeaguesMainFragment {
+            return LeaguesMainFragment()
         }
     }
 

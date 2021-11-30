@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_live_matches"
+        android:id="@+id/action_matches"
         android:checkable="true"
         android:enabled="true"
         android:icon="@drawable/go_to_league"
         android:title="@string/matches"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_matches"
+        android:id="@+id/action_live"
         android:checkable="true"
         android:enabled="true"
         android:icon="@drawable/goals"
@@ -18,7 +18,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_news"
+        android:id="@+id/action_leagues"
         android:checkable="true"
         android:enabled="true"
         android:icon="@drawable/ic_globe_thin"

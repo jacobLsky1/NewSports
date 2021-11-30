@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
-import com.jacoblip.andriod.newsports.databinding.MatchsFragmentMatchesHomeBinding
 import com.jacoblip.andriod.newsports.databinding.RecyclerViewLayoutBinding
 import dagger.hilt.android.AndroidEntryPoint
 
