@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
     private fun setUpView(){
 
+        setSupportActionBar(binding.toolbar)
+
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.action_matches -> {
