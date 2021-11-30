@@ -3,6 +3,7 @@
     package="com.jacoblip.andriod.newsports">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".utilities.NewSportsApp"
         android:allowBackup="true"
@@ -12,17 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewSports">
         <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".ui.splash.WebActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+
         </activity>
 
         <receiver
-            android:name=".utilities.WifiReceiver"
+            android:name=".utilities.internet.WifiReceiver"
             android:label="WifiReceiver">
             <intent-filter android:priority="100">
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

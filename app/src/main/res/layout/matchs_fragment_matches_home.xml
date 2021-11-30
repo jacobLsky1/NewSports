@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewpagerLoading"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <include
+        android:id="@+id/include_viewpager_tabs_layout"
+        layout="@layout/include_viewpager_tabs_layout" />
+
+    <include
+        layout="@layout/include_message_layout"
+        android:id="@+id/include_message_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorHeight="5dp"
-        app:tabSelectedTextColor="@color/accent"
-        app:tabTextColor="#4B4B4B" />
+        android:layout_centerInParent="true" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include
+        layout="@layout/include_progressbar_layout"
+        android:id="@+id/include_progressbar_layout"
+        />
 
-</LinearLayout>
+</RelativeLayout>
 
