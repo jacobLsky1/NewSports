@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.utilities.date_and_time
+package com.jacoblip.andriod.newsports.utilities
 
 import android.content.Context
 import android.text.format.DateUtils

@@ -1,13 +1,12 @@
-package com.jacoblip.andriod.newsports.data.services
+package com.jacoblip.andriod.newsports.interfaces
 
 import com.google.gson.GsonBuilder
-import com.jacoblip.andriod.newsports.interfaces.NewSportsAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitInstance {
+class MainRetrofitInstance {
     companion object {
         var gson = GsonBuilder()
             .setLenient()

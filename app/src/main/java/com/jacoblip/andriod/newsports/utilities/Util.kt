@@ -6,5 +6,6 @@ class Util {
     companion object{
         var hasInternet: MutableLiveData<Boolean> = MutableLiveData()
         var problem:MutableLiveData<Boolean> = MutableLiveData()
+        var requestError:MutableLiveData<Int> = MutableLiveData(0)
     }
 }

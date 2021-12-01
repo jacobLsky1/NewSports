@@ -22,9 +22,6 @@ class AboutActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
         binding.companyName.text = getString(R.string.sample_company_name) + " v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")"
 
         binding.twitter.setOnClickListener {

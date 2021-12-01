@@ -9,8 +9,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.DatePicker
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     private var matchesFragment: MatchesMainFragment = MatchesMainFragment.newInstance()
     private var liveFragment: LiveMainFragment = LiveMainFragment.newInstance()
     private var leaguesFragment: LeaguesMainFragment = LeaguesMainFragment.newInstance()
+    var errorDialogIsShowing = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,6 +93,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         val calendar = Calendar.getInstance()
         calendar.set(year, month, day)
         val selectedDate = formatter.format(calendar.time)
+        // TODO: 01/12/2021 below
        // val intent = Intent(this@MainActivity, DateMatchesActivity::class.java)
         intent.putExtra("date", selectedDate)
         startActivity(intent)
@@ -134,6 +138,13 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 snackBar.dismiss()
             }
         })
+
+        Util.requestError.observe(this,{
+            if(it!=0){
+                if(!errorDialogIsShowing)
+                    makeErrorDialog(it)
+            }
+        })
     }
 
     private fun setFragment(fragment:Fragment,num:Int){
@@ -153,4 +164,38 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onStop()
         unregisterReceiver(wifiReceiver)
     }
+
+    fun makeErrorDialog(num: Int){
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.error_request_dalog, null)
+        val checkInternetButton = dialogView.findViewById(R.id.checkInternetButton) as Button
+        val yesButton = dialogView.findViewById(R.id.tryAgainButton) as Button
+
+        val alertDialog = AlertDialog.Builder(this@MainActivity)
+        alertDialog.setView(dialogView).setCancelable(true)
+
+        val dialog = alertDialog.create()
+        dialog.show()
+        errorDialogIsShowing = true
+
+        yesButton.setOnClickListener {
+            dialog.dismiss()
+            when(num){
+                // TODO: 01/12/2021 depending what error there is try request again
+                1->{}
+                2->{}
+                3->{}
+                4->{}
+                5->{}
+            }
+            errorDialogIsShowing = false
+            Util.requestError.postValue(0)
+
+        }
+
+        checkInternetButton.setOnClickListener {
+            this@MainActivity.let { InternetConnectivity.connectToInternet(applicationContext) }
+        }
+    }
+
 }
