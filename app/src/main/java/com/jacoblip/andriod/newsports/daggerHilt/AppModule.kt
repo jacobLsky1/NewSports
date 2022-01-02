@@ -2,6 +2,7 @@ package com.jacoblip.andriod.newsports.daggerHilt
 
 import android.content.Context
 import com.jacoblip.andriod.newsports.data.services.repositorys.MainRepository
+import com.jacoblip.andriod.newsports.data.services.repositorys.MatchRepository
 import com.jacoblip.andriod.newsports.data.services.repositorys.SplashRepository
 import dagger.Module
 import dagger.Provides
@@ -29,6 +30,10 @@ object AppModule {
     @Singleton
     @Provides
     fun getSplashRepository() = SplashRepository()
+
+    @Singleton
+    @Provides
+    fun getMatchRepository() = MatchRepository()
 
 
 }

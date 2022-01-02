@@ -19,7 +19,7 @@ class MainRetrofitInstance {
                 .addInterceptor(logging)
                 .build()
             Retrofit.Builder()
-                .baseUrl("https://livegamesonline21.com/")
+                .baseUrl("https://soccer.sportmonks.com/api/v2.0/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()

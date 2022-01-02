@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jacoblip.andriod.newsports.data.models.callbacks.MatchesCallback
+import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.repositorys.MainRepository
 import com.jacoblip.andriod.newsports.interfaces.MainRetrofitInstance
 import com.jacoblip.andriod.newsports.ui.main.fragments.matches.MatchesMainFragment
@@ -31,12 +32,22 @@ class MainViewModel
         MatchesMainFragment.newInstance())
     var mainFragmentCurrentFragment: LiveData<Fragment> = _mainFragmentCurrentFragment
 
+    private var _listOfUpcomingMatches:MutableLiveData<List<Fixture>> = MutableLiveData()
+    var  listOfUpcomingMatches:LiveData<List<Fixture>> = _listOfUpcomingMatches
+
+    private var _listOfRecentMatches:MutableLiveData<List<Fixture>> = MutableLiveData()
+    var  listOfRecentMatches:LiveData<List<Fixture>> = _listOfRecentMatches
+
+    private var _isFetchingData:MutableLiveData<Boolean> = MutableLiveData(false)
+    var isFetchingData:LiveData<Boolean> = _isFetchingData
 
 
-    fun loadMatchesFromServer(from:String,to:String){
+    fun loadUpcomingMatchesFromServer(from:String,to:String){
+        _isFetchingData.postValue(true)
         val callback = MainRetrofitInstance.api.fixturesBetweenDates(from, to)
         callback.enqueue(object : Callback<MatchesCallback> {
             override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
+                _isFetchingData.postValue(false)
                 Util.requestError.postValue(1)
             }
 
@@ -44,19 +55,56 @@ class MainViewModel
                 call: Call<MatchesCallback>,
                 response: Response<MatchesCallback>
             ) {
+                _isFetchingData.postValue(false)
                 if (response.isSuccessful) {
                     val matches = response.body()
                     if (matches != null) {
                         if (matches.data != null) {
                             if (matches.data.isNotEmpty()) {
-
+                                var list = matches.data
+                                list.sortBy { it.time.starting_at.date_time }
+                                _listOfUpcomingMatches.postValue(list)
                             } else {
-
+// TODO: 02/01/2022 handle error
                             }
                         }
                     }
                 } else {
+// TODO: 02/01/2022 handle error
+                }
+            }
+        })
+    }
 
+    fun loadRecentMatchesFromServer(from:String,to:String){
+        _isFetchingData.postValue(true)
+        val callback = MainRetrofitInstance.api.fixturesBetweenDates(from, to)
+        callback.enqueue(object : Callback<MatchesCallback> {
+            override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
+                Util.requestError.postValue(1)
+                _isFetchingData.postValue(false)
+            }
+
+            override fun onResponse(
+                call: Call<MatchesCallback>,
+                response: Response<MatchesCallback>
+            ) {
+                _isFetchingData.postValue(false)
+                if (response.isSuccessful) {
+                    val matches = response.body()
+                    if (matches != null) {
+                        if (matches.data != null) {
+                            if (matches.data.isNotEmpty()) {
+                                var list = matches.data
+                                list.sortBy { it.time.starting_at.date_time }
+                                _listOfRecentMatches.postValue(list.reversed())
+                            } else {
+// TODO: 02/01/2022 handle error
+                            }
+                        }
+                    }
+                } else {
+// TODO: 02/01/2022 handle error
                 }
             }
         })

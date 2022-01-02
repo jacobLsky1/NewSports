@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jacoblip.andriod.newsports.data.models.TermsChange
-import com.jacoblip.andriod.newsports.data.services.repositorys.MainRepository
 import com.jacoblip.andriod.newsports.data.services.repositorys.SplashRepository
 import com.jacoblip.andriod.newsports.interfaces.TermsRetrofitInstance
 import com.jacoblip.andriod.newsports.utilities.Util

@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_about.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_match.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_team.xml" value="0.21145833333333333" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_web.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/error_request_dalog.xml" value="0.2484375" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/include_message_layout.xml" value="0.1" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/include_progressbar_layout.xml" value="0.1" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/include_viewpager_tabs_layout.xml" value="0.1" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/item_soccer_match.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/leagues_fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/live_fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/main_activity_main.xml" value="0.25" />

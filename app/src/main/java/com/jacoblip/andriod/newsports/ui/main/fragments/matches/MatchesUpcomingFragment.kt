@@ -4,15 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.callbacks.MatchesCallback
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
 import com.jacoblip.andriod.newsports.databinding.MatchesFragmentUpcomingBinding
 import com.jacoblip.andriod.newsports.interfaces.MainRetrofitInstance
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.SoccerMatchesAdapter
 import com.jacoblip.andriod.newsports.utilities.Util
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +32,9 @@ class MatchesUpcomingFragment: Fragment(){
     private lateinit var binding: MatchesFragmentUpcomingBinding
     lateinit var viewModel: MainViewModel
     var swipeRefreshLayout: SwipeRefreshLayout? = null
+    lateinit var matchesRV : RecyclerView
+    lateinit var progressBar: ProgressBar
+    lateinit var noMatches: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,9 +48,17 @@ class MatchesUpcomingFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeRefreshLayout = binding.swipeRefreshLayout
+        matchesRV = binding.matchsUpcomingRv
+        progressBar = binding.progressBar2
+        noMatches = binding.noMatchesTV
+        matchesRV.layoutManager = LinearLayoutManager(requireContext())
         swipeRefreshLayout!!.setOnRefreshListener {
-            Toast.makeText(requireContext(), "refreshing", Toast.LENGTH_SHORT).show()
+            matchesRV.isVisible = true
+            noMatches.isVisible = false
             swipeRefreshLayout!!.isRefreshing = false;
+            val from = requireArguments().getString("from")!!
+            val to = requireArguments().getString("to")!!
+            viewModel.loadUpcomingMatchesFromServer(from,to)
         }
         setUpServices()
         setUpObservers()
@@ -49,7 +66,20 @@ class MatchesUpcomingFragment: Fragment(){
     }
 
     private fun setUpObservers(){
+        viewModel.listOfUpcomingMatches.observe(viewLifecycleOwner,{
+            if(it!=null){
+                matchesRV.isVisible = true
+                noMatches.isVisible = false
+                matchesRV.adapter = SoccerMatchesAdapter(it,requireContext())
+            }else{
+                matchesRV.isVisible = false
+                noMatches.isVisible = true
+            }
+        })
 
+        viewModel.isFetchingData.observe(viewLifecycleOwner,{
+            binding.progressBar2.isVisible = it
+        })
     }
 
     private fun setUpServices(){
@@ -59,7 +89,7 @@ class MatchesUpcomingFragment: Fragment(){
     private fun setUpFragment(){
         val from = requireArguments().getString("from")!!
         val to = requireArguments().getString("to")!!
-        viewModel.loadMatchesFromServer(from,to)
+        viewModel.loadUpcomingMatchesFromServer(from,to)
     }
 
 

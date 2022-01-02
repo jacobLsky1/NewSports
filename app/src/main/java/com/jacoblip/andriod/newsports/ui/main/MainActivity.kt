@@ -18,7 +18,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
-import com.jacoblip.andriod.newsports.databinding.MainActivityMainBinding
+import com.jacoblip.andriod.newsports.databinding.ActivityMainBinding
 import com.jacoblip.andriod.newsports.ui.main.fragments.leagues.LeaguesMainFragment
 import com.jacoblip.andriod.newsports.ui.main.fragments.live.LiveMainFragment
 import com.jacoblip.andriod.newsports.ui.main.fragments.matches.MatchesMainFragment
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     private lateinit var wifiReceiver: WifiReceiver
     private val viewModel:MainViewModel by viewModels()
     private lateinit var fragment:Fragment
-    private lateinit var binding:MainActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var datePickerDialog: DatePickerDialog
     private var matchesFragment: MatchesMainFragment = MatchesMainFragment.newInstance()
     private var liveFragment: LiveMainFragment = LiveMainFragment.newInstance()
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         setUpServices()
