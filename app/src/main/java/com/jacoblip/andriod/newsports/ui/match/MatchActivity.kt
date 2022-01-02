@@ -17,6 +17,7 @@ import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.ActivityMatchBinding
+import com.jacoblip.andriod.newsports.ui.match.fragmnets.SelectedMatchMainFragment
 import com.jacoblip.andriod.newsports.utilities.Util
 import com.jacoblip.andriod.newsports.utilities.internet.InternetConnectivity
 import com.jacoblip.andriod.newsports.utilities.internet.WifiReceiver
@@ -27,7 +28,6 @@ class MatchActivity : AppCompatActivity() {
 
     private lateinit var wifiReceiver: WifiReceiver
     private val viewModel: MatchViewModel by viewModels()
-    private lateinit var fragment: Fragment
     private lateinit var binding: ActivityMatchBinding
     private lateinit var match:Fixture
     var errorDialogIsShowing = false
@@ -65,6 +65,16 @@ class MatchActivity : AppCompatActivity() {
         var homeScore = match.scores.localteam_score
         var visitorScore = match.scores.visitorteam_score
         scoreTV.text = "$homeScore : $visitorScore"
+
+        setFragment()
+    }
+
+    private fun setFragment(){
+        val fragment = SelectedMatchMainFragment.newInstance()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.match_activity_fragment_container,fragment)
+            .commit()
     }
 
     private fun setUpObservers(view: View){

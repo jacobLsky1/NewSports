@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.main.fragments.matches
+package com.jacoblip.andriod.newsports.ui.match.fragmnets
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,15 +7,17 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayout
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
 import com.jacoblip.andriod.newsports.databinding.MatchesFragmentHomeBinding
 import com.jacoblip.andriod.newsports.ui.adapters.pager_adapters.MatchesHomeFragmentsAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.pager_adapters.SelectedMatchHomeFragmentsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
 
 @AndroidEntryPoint
-class MatchesMainFragment():Fragment() {
+class SelectedMatchMainFragment():Fragment() {
 
     lateinit var viewModel: MainViewModel
     private lateinit var binding: MatchesFragmentHomeBinding
@@ -31,12 +33,15 @@ class MatchesMainFragment():Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewpager.adapter = MatchesHomeFragmentsAdapter(childFragmentManager, requireContext())
+        binding.viewpager.adapter = SelectedMatchHomeFragmentsAdapter(childFragmentManager, requireContext())
         binding.tabLayout.setupWithViewPager(binding.viewpager)
         binding.viewpager.isVisible = true
         binding.tabLayout.isVisible = true
-        binding.viewpager.currentItem = 0
-        binding.viewpager.offscreenPageLimit = 2
+        binding.viewpager.offscreenPageLimit = 3
+        val scale = resources.displayMetrics.density
+        binding.tabLayout.layoutParams.height = (36 * scale + 0.5F).toInt()
+        binding.tabLayout.requestLayout()
+        binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
     private fun setUpObservers(){
@@ -50,8 +55,8 @@ class MatchesMainFragment():Fragment() {
 
 
     companion object{
-        fun newInstance(): MatchesMainFragment {
-            return MatchesMainFragment()
+        fun newInstance(): SelectedMatchMainFragment {
+            return SelectedMatchMainFragment()
         }
     }
 

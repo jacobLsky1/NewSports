@@ -14,7 +14,7 @@ import android.os.Parcelable
 
 
 
-class MatchHomeFragmentsAdapter(fragmentManager: FragmentManager, val context: Context) : FragmentStatePagerAdapter(fragmentManager) {
+class MatchesHomeFragmentsAdapter(fragmentManager: FragmentManager, val context: Context) : FragmentStatePagerAdapter(fragmentManager) {
 
     override fun saveState(): Parcelable? {
         return null

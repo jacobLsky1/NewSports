@@ -132,9 +132,8 @@
                 tools:text="0 : 1" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
-
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_activity_fragment_container"
+        android:id="@+id/match_activity_fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
