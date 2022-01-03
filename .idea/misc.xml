@@ -7,12 +7,18 @@
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_match.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_team.xml" value="0.21145833333333333" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/activity_web.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/commentary_row_item.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/error_request_dalog.xml" value="0.2484375" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/h2h_matches.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/h2h_matches_visitor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/h2h_matchs.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/h2h_matchs_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/include_message_layout.xml" value="0.1" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/include_progressbar_layout.xml" value="0.1" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/include_viewpager_tabs_layout.xml" value="0.1" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/item_soccer_match.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/leagues_fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/lineup_row_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/live_fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/main_activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/main_fragment_main.xml" value="0.1" />
@@ -29,6 +35,8 @@
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/selected_match_matches.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/selected_match_standings.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/selected_match_timeline.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/standing_row_item.xml" value="0.28177083333333336" />
+        <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/standings_heading_row_item.xml" value="0.28177083333333336" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/layout/util_activity_about.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/menu/bottom_navigation_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dibit/AndroidStudioProjects/NewSports/app/src/main/res/menu/menu_main.xml" value="0.35104166666666664" />

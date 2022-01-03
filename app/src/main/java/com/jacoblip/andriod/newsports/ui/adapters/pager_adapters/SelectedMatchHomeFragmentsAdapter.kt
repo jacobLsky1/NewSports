@@ -10,10 +10,14 @@ import com.jacoblip.andriod.newsports.ui.main.fragments.matches.MatchesUpcomingF
 
 import com.jacoblip.andriod.newsports.utilities.DateTimeUtil
 import android.os.Parcelable
+import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.ui.match.fragmnets.*
 
 
-class SelectedMatchHomeFragmentsAdapter(fragmentManager: FragmentManager, val context: Context) : FragmentStatePagerAdapter(fragmentManager) {
+class SelectedMatchHomeFragmentsAdapter(fragmentManager: FragmentManager,
+                                        val context: Context,
+                                        val match: Fixture
+) : FragmentStatePagerAdapter(fragmentManager) {
 
     override fun saveState(): Parcelable? {
         return null
@@ -23,48 +27,19 @@ class SelectedMatchHomeFragmentsAdapter(fragmentManager: FragmentManager, val co
         return when (position) {
 
             1 -> {
-                //val bundle = Bundle()
-               // bundle.putString("from", DateTimeUtil.getCustomDate(0))
-                //bundle.putString("to", DateTimeUtil.getCustomDate(14))
-                val fragment =SelectedMatchCommentaryFragment.newInstance()
-
-               // fragment.arguments = bundle
-                fragment
+                SelectedMatchCommentaryFragment.newInstance(match)
             }
             2 -> {
-                //val bundle = Bundle()
-                // bundle.putString("from", DateTimeUtil.getCustomDate(0))
-                //bundle.putString("to", DateTimeUtil.getCustomDate(14))
-                val fragment =SelectedMatchMatchesFragment.newInstance()
-
-                // fragment.arguments = bundle
-                fragment
+                SelectedMatchMatchesFragment.newInstance(match)
             }
             3 -> {
-                //val bundle = Bundle()
-                // bundle.putString("from", DateTimeUtil.getCustomDate(0))
-                //bundle.putString("to", DateTimeUtil.getCustomDate(14))
-                val fragment =SelectedMatchLineUpFragment.newInstance()
-
-                // fragment.arguments = bundle
-                fragment
+                SelectedMatchLineUpFragment.newInstance(match)
             }
             4 -> {
-                //val bundle = Bundle()
-                // bundle.putString("from", DateTimeUtil.getCustomDate(0))
-                //bundle.putString("to", DateTimeUtil.getCustomDate(14))
-                val fragment =SelectedMatchTimeLineFragment.newInstance()
-
-                // fragment.arguments = bundle
-                fragment
+               SelectedMatchTimeLineFragment.newInstance(match)
             }
             else -> {
-                //val bundle = Bundle()
-                // bundle.putString("from", DateTimeUtil.getCustomDate(-14))
-                // bundle.putString("to", DateTimeUtil.getCustomDate(-1))
-                val fragment = SelectedMatchStandingsFragment.newInstance()
-                //fragment.arguments = bundle
-                fragment
+                SelectedMatchStandingsFragment.newInstance(match)
             }
         }
     }

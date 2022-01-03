@@ -73,7 +73,7 @@ class MatchesRecentFragment: Fragment(){
             if(it!=null){
                 matchesRV.isVisible = true
                 noMatches.isVisible = false
-                matchesRV.adapter = SoccerMatchesAdapter(it,requireContext())
+                matchesRV.adapter = SoccerMatchesAdapter(it,requireContext(),true)
             }else{
                 matchesRV.isVisible = false
                 noMatches.isVisible = true

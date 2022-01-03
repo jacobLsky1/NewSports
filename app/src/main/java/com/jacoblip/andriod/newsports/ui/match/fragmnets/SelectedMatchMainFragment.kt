@@ -8,16 +8,18 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
+import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
 import com.jacoblip.andriod.newsports.databinding.MatchesFragmentHomeBinding
 import com.jacoblip.andriod.newsports.ui.adapters.pager_adapters.MatchesHomeFragmentsAdapter
 import com.jacoblip.andriod.newsports.ui.adapters.pager_adapters.SelectedMatchHomeFragmentsAdapter
+import com.jacoblip.andriod.newsports.ui.match.MatchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
 
 @AndroidEntryPoint
-class SelectedMatchMainFragment():Fragment() {
+class SelectedMatchMainFragment(var match:Fixture):Fragment() {
 
     lateinit var viewModel: MainViewModel
     private lateinit var binding: MatchesFragmentHomeBinding
@@ -33,7 +35,7 @@ class SelectedMatchMainFragment():Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewpager.adapter = SelectedMatchHomeFragmentsAdapter(childFragmentManager, requireContext())
+        binding.viewpager.adapter = SelectedMatchHomeFragmentsAdapter(childFragmentManager,requireContext(),match)
         binding.tabLayout.setupWithViewPager(binding.viewpager)
         binding.viewpager.isVisible = true
         binding.tabLayout.isVisible = true
@@ -55,8 +57,8 @@ class SelectedMatchMainFragment():Fragment() {
 
 
     companion object{
-        fun newInstance(): SelectedMatchMainFragment {
-            return SelectedMatchMainFragment()
+        fun newInstance(match:Fixture): SelectedMatchMainFragment {
+            return SelectedMatchMainFragment(match)
         }
     }
 

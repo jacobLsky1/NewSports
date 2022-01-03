@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.jacoblip.andriod.newsports.R
@@ -42,7 +43,6 @@ class MatchActivity : AppCompatActivity() {
         setUpServices()
         setUpObservers(this.findViewById(android.R.id.content)/*gets the content view*/)
         wifiReceiver = WifiReceiver()
-        setUpView()
     }
 
     private fun setUpView(){
@@ -65,12 +65,11 @@ class MatchActivity : AppCompatActivity() {
         var homeScore = match.scores.localteam_score
         var visitorScore = match.scores.visitorteam_score
         scoreTV.text = "$homeScore : $visitorScore"
-
         setFragment()
     }
 
     private fun setFragment(){
-        val fragment = SelectedMatchMainFragment.newInstance()
+        val fragment = SelectedMatchMainFragment.newInstance(match)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.match_activity_fragment_container,fragment)
@@ -97,10 +96,19 @@ class MatchActivity : AppCompatActivity() {
                     makeErrorDialog(it)
             }
         })
+
+        viewModel.match.observe(this,{
+            if(it!=null){
+                match = it
+                setUpView()
+            }
+        })
     }
 
-    private fun setUpServices(){
+    fun getMatchObject() = match
 
+    private fun setUpServices(){
+        viewModel.getMatchInQuestion(match.id)
     }
 
 

@@ -1,20 +1,18 @@
-package com.jacoblip.andriod.newsports.ui.match.fragmnets
+package com.jacoblip.andriod.newsports.ui.match.fragmnets.matches
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
-import com.jacoblip.andriod.newsports.databinding.SelectedMatchTimelineBinding
+import com.jacoblip.andriod.newsports.databinding.H2hMatchesBinding
 
 
-class SelectedMatchTimeLineFragment(var match:Fixture):Fragment() {
+class H2HmatchesFragment():Fragment() {
 
-    lateinit var binding: SelectedMatchTimelineBinding
+    lateinit var binding: H2hMatchesBinding
     lateinit var viewModel: MatchViewModel
 
 
@@ -23,10 +21,10 @@ class SelectedMatchTimeLineFragment(var match:Fixture):Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SelectedMatchTimelineBinding.inflate(LayoutInflater.from(requireContext()))
+        binding = H2hMatchesBinding.inflate(LayoutInflater.from(requireContext()))
         val view = binding.root
         view.apply {
-
+            
         }
         viewModel = ViewModelProvider(requireActivity()).get(MatchViewModel::class.java)
         setUpObservers()
@@ -34,13 +32,13 @@ class SelectedMatchTimeLineFragment(var match:Fixture):Fragment() {
     }
 
     fun setUpObservers(){
-
+       
     }
 
     companion object{
-        fun newInstance(match: Fixture):SelectedMatchTimeLineFragment {
-            return SelectedMatchTimeLineFragment(match)
+        fun newInstance():H2HmatchesFragment {
+            return H2HmatchesFragment()
         }
     }
-
+    
 }

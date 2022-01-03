@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedMatchStandingsBinding
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.StandingsAdapter
 
 
-class SelectedMatchStandingsFragment():Fragment() {
+class SelectedMatchStandingsFragment(var match:Fixture):Fragment() {
 
     lateinit var binding: SelectedMatchStandingsBinding
     lateinit var viewModel: MatchViewModel
@@ -24,21 +27,24 @@ class SelectedMatchStandingsFragment():Fragment() {
     ): View? {
         binding = SelectedMatchStandingsBinding.inflate(LayoutInflater.from(requireContext()))
         val view = binding.root
-        view.apply {
-
-        }
         viewModel = ViewModelProvider(requireActivity()).get(MatchViewModel::class.java)
+        viewModel.getMatchStandings(match.season_id)
         setUpObservers()
         return view
     }
 
     fun setUpObservers(){
-
+        viewModel.matchStandings.observe(viewLifecycleOwner,{
+            if(it.isNotEmpty()){
+                binding.standingsRV.layoutManager = LinearLayoutManager(context)
+                binding.standingsRV.adapter = StandingsAdapter(it,requireContext(), match.localteam_id, match.visitorteam_id)
+            }
+        })
     }
 
     companion object{
-        fun newInstance():SelectedMatchStandingsFragment {
-            return SelectedMatchStandingsFragment()
+        fun newInstance(match: Fixture):SelectedMatchStandingsFragment {
+            return SelectedMatchStandingsFragment(match)
         }
     }
 
