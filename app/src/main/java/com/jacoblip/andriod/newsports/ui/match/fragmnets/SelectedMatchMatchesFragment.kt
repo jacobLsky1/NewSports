@@ -40,17 +40,15 @@ class SelectedMatchMatchesFragment(var match:Fixture):Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val match = (context as MatchActivity).getMatchObject()
-        if (binding.viewpager != null) {
-            binding.viewpager.adapter = H2HFragmentsAdapter(childFragmentManager, match!!)
-            binding.tabLayout.setupWithViewPager(binding.viewpager)
-            binding.viewpager.offscreenPageLimit = 2
-            //binding.viewpagerTabsLayout.visibility = View.VISIBLE
-            val scale = requireContext().resources.displayMetrics.density
-            binding.tabLayout.layoutParams.height = (24 * scale + 0.5F).toInt()
-            binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
-            binding.tabLayout.requestLayout()
-            //binding.tabLayout.background = ContextCompat.getDrawable(requireContext(), R.drawable.standings_unselected_team_bg)
-        }
+        binding.viewpager.adapter = H2HFragmentsAdapter(childFragmentManager, match)
+        binding.tabLayout.setupWithViewPager(binding.viewpager)
+        binding.viewpager.offscreenPageLimit = 2
+        //binding.viewpagerTabsLayout.visibility = View.VISIBLE
+        val scale = requireContext().resources.displayMetrics.density
+        binding.tabLayout.layoutParams.height = (24 * scale + 0.5F).toInt()
+        binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
+        binding.tabLayout.requestLayout()
+        //binding.tabLayout.background = ContextCompat.getDrawable(requireContext(), R.drawable.standings_unselected_team_bg)
     }
 
     fun setUpObservers(){

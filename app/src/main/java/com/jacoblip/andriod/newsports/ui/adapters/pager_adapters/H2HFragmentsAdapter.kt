@@ -16,25 +16,13 @@ class H2HFragmentsAdapter(
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                val bundle = Bundle()
-                bundle.putSerializable("fixture", fixture)
-                val fragment = H2HmatchesFragment.newInstance()
-                fragment.arguments = bundle
-                fragment
+                H2HmatchesFragment.newInstance(fixture)
             }
             1 -> {
-                val bundle = Bundle()
-                bundle.putLong("team_id", fixture.localteam_id)
-                val fragment = H2HMatchesHomeFragment.newInstance()
-                fragment.arguments = bundle
-                fragment
+                H2HMatchesHomeFragment.newInstance(fixture)
             }
             else -> {
-                val bundle = Bundle()
-                bundle.putLong("team_id", fixture.visitorteam_id)
-                val fragment = H2HMatchesVisitorFragment.newInstance()
-                fragment.arguments = bundle
-                fragment
+                H2HMatchesVisitorFragment.newInstance(fixture)
             }
         }
     }

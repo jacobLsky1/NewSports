@@ -4,13 +4,11 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jacoblip.andriod.newsports.data.models.callbacks.CommentariesCallback
-import com.jacoblip.andriod.newsports.data.models.callbacks.MatchCallback
-import com.jacoblip.andriod.newsports.data.models.callbacks.MatchesCallback
-import com.jacoblip.andriod.newsports.data.models.callbacks.StandingsCallback
+import com.jacoblip.andriod.newsports.data.models.callbacks.*
 import com.jacoblip.andriod.newsports.data.models.commentaries.Commentary
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.models.standing.Standing
+import com.jacoblip.andriod.newsports.data.models.team.Team
 import com.jacoblip.andriod.newsports.data.services.repositorys.MainRepository
 import com.jacoblip.andriod.newsports.data.services.repositorys.MatchRepository
 import com.jacoblip.andriod.newsports.interfaces.MainRetrofitInstance
@@ -35,8 +33,17 @@ class MatchViewModel@Inject constructor(
     private var _matchStandings:MutableLiveData<ArrayList<Standing>> = MutableLiveData()
     var matchStandings :LiveData<ArrayList<Standing>> = _matchStandings
 
+    private var _listOfH2HMatches:MutableLiveData<List<Fixture>> = MutableLiveData()
+    var  listOfH2HMatches:LiveData<List<Fixture>> = _listOfH2HMatches
+
     private var _isFetchingData:MutableLiveData<Boolean> = MutableLiveData(false)
     var isFetchingData:LiveData<Boolean> = _isFetchingData
+
+    private var _homeTeamDetails:MutableLiveData<Team> = MutableLiveData()
+     var homeTeamDetails:LiveData<Team> = _homeTeamDetails
+
+    private var _visitorTeamDetails:MutableLiveData<Team> = MutableLiveData()
+    var visitorTeamDetails:LiveData<Team> = _visitorTeamDetails
 
     fun getMatchInQuestion(matchId:Long){
         _isFetchingData.postValue(true)
@@ -103,6 +110,78 @@ class MatchViewModel@Inject constructor(
                 if (response.isSuccessful) {
                     val match = response.body()!!.data
                     _matchCommentary.postValue(match)
+                } else {
+                    // TODO: 02/01/2022 handle error
+                }
+            }
+        })
+    }
+
+    fun getH2Hmatches(match:Fixture){
+        _isFetchingData.postValue(true)
+        val callback = MainRetrofitInstance.api.getH2H(match.localteam_id, match.visitorteam_id)
+        callback.enqueue(object : Callback<MatchesCallback> {
+            override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
+                _isFetchingData.postValue(false)
+                Util.requestError.postValue(1)
+            }
+
+            override fun onResponse(
+                call: Call<MatchesCallback>,
+                response: Response<MatchesCallback>
+            ) {
+                _isFetchingData.postValue(false)
+                if (response.isSuccessful) {
+                    val matches = response.body()!!.data
+                    _listOfH2HMatches.postValue(matches)
+                } else {
+                    // TODO: 02/01/2022 handle error
+                }
+            }
+        })
+    }
+
+    fun fetchHomeTeamDetailFromAPI(teamId:Long){
+        _isFetchingData.postValue(true)
+        val callback = MainRetrofitInstance.api.teamResultsById(teamId)
+        callback.enqueue(object : Callback<TeamCallback> {
+            override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
+                _isFetchingData.postValue(false)
+                Util.requestError.postValue(1)
+            }
+
+            override fun onResponse(
+                call: Call<TeamCallback>,
+                response: Response<TeamCallback>
+            ) {
+                _isFetchingData.postValue(false)
+                if (response.isSuccessful) {
+                    val team = response.body()!!.data
+                    _homeTeamDetails.postValue(team)
+                } else {
+                    // TODO: 02/01/2022 handle error
+                }
+            }
+        })
+    }
+
+    fun fetchVisitorTeamDetailFromAPI(teamId:Long){
+        _isFetchingData.postValue(true)
+        val callback = MainRetrofitInstance.api.teamResultsById(teamId)
+        callback.enqueue(object : Callback<TeamCallback> {
+            override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
+                _isFetchingData.postValue(false)
+                Util.requestError.postValue(1)
+            }
+
+            override fun onResponse(
+                call: Call<TeamCallback>,
+                response: Response<TeamCallback>
+            ) {
+                _isFetchingData.postValue(false)
+                if (response.isSuccessful) {
+                    val team = response.body()!!.data
+                    _visitorTeamDetails.postValue(team)
                 } else {
                     // TODO: 02/01/2022 handle error
                 }

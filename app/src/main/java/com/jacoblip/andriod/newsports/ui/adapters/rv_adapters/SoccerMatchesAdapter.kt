@@ -91,6 +91,10 @@ class SoccerMatchesAdapter(val matchs:List<Fixture>,val context:Context,val hasH
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 intent.putExtra("team", homeTeam)
+
+                if(match.colors!=null)
+                intent.putExtra("color", match.colors.localteam.color)
+
                 context.startActivity(intent)
             }
 
@@ -99,6 +103,10 @@ class SoccerMatchesAdapter(val matchs:List<Fixture>,val context:Context,val hasH
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 intent.putExtra("team", visitorTeam)
+
+                if(match.colors!=null)
+                intent.putExtra("color", match.colors!!.visitorteam.color)
+
                 context.startActivity(intent)
             }
         }

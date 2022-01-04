@@ -14,6 +14,7 @@ import retrofit2.http.Url
 
 const val fixtures = "fixtures.localTeam,fixtures.visitorTeam,fixtures.league,fixtures.league.country"
 const val upcoming = "upcoming.localTeam,upcoming.visitorTeam,upcoming.league,upcoming.league.country"
+const val latest = "latest.localTeam,latest.visitorTeam,latest.league,latest.league.country"
 const val results = "results.localTeam,results.visitorTeam,results.league,results.league.country"
 private const val localResults = "localResults.localTeam,localResults.visitorTeam,localResults.league,localResults.league.country"
 private const val visitorResults = "visitorResults.localTeam,visitorResults.visitorTeam,visitorResults.league,visitorResults.league.country"
@@ -69,7 +70,7 @@ interface NewSportsAPI {
     @GET("teams/{id}?api_token=$API_KEY&include=visitorResults$limit,$visitorResults,localResults$limit,$localResults")
     fun teamResultsById(@Path("id") leagueId: Long): Call<TeamCallback>
 
-    @GET("teams/{id}?api_token=$API_KEY&include=visitorFixtures$limit,$visitorFixtures,localFixtures$limit,$localFixtures,upcoming$limit,$upcoming")
+    @GET("teams/{id}?api_token=$API_KEY&include=visitorFixtures$limit,$visitorFixtures,localFixtures$limit,$localFixtures,upcoming$limit,$upcoming,latest$limit,$latest")
     fun teamFixturesById(@Path("id") leagueId: Long): Call<TeamCallback>
 
     @GET("teams/{id}?api_token=$API_KEY&include=squad.player,squad.position")

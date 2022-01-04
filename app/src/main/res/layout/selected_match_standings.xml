@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="MP"
+                android:gravity="center"
                 android:textColor="@color/white" />
 
             <TextView
@@ -81,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="W"
+                android:gravity="center"
                 android:textColor="@color/white" />
 
             <TextView
@@ -89,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="D"
+                android:gravity="center"
                 android:textColor="@color/white" />
 
             <TextView
@@ -97,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="L"
+                android:gravity="center"
                 android:textColor="@color/white" />
 
             <TextView
@@ -104,6 +108,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
                 android:text="GD" />
 
             <TextView
@@ -112,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Pts"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -132,5 +139,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/standingLayout" />
+
+    <TextView
+        android:id="@+id/NoStandingsToShowYet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No standings to show yet..."
+        android:visibility="gone"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/standingsRV"
+        app:layout_constraintEnd_toEndOf="@+id/standingsRV"
+        app:layout_constraintStart_toStartOf="@+id/standingsRV"
+        app:layout_constraintTop_toBottomOf="@+id/standingLayout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/standingsRV"
+        app:layout_constraintStart_toStartOf="@+id/standingsRV"
         app:layout_constraintTop_toBottomOf="@+id/standingLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

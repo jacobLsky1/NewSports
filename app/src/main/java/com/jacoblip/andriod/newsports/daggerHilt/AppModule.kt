@@ -4,6 +4,7 @@ import android.content.Context
 import com.jacoblip.andriod.newsports.data.services.repositorys.MainRepository
 import com.jacoblip.andriod.newsports.data.services.repositorys.MatchRepository
 import com.jacoblip.andriod.newsports.data.services.repositorys.SplashRepository
+import com.jacoblip.andriod.newsports.data.services.repositorys.TeamRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +16,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-   // @Singleton
-   // @Provides
-    //fun providesRepository() = Repository()
 
     @Singleton
     @Provides
@@ -35,5 +33,8 @@ object AppModule {
     @Provides
     fun getMatchRepository() = MatchRepository()
 
+    @Singleton
+    @Provides
+    fun getTeamRepository() = TeamRepository()
 
 }
