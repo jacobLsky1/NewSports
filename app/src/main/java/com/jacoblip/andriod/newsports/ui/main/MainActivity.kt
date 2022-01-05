@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        setUpServices()
         setUpObservers(this.findViewById(android.R.id.content)/*gets the content view*/)
         wifiReceiver = WifiReceiver()
         setUpView()
@@ -94,13 +93,9 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         calendar.set(year, month, day)
         val selectedDate = formatter.format(calendar.time)
         // TODO: 01/12/2021 below
-       // val intent = Intent(this@MainActivity, DateMatchesActivity::class.java)
+        val intent = Intent(this@MainActivity, DateMatchesActivity::class.java)
         intent.putExtra("date", selectedDate)
         startActivity(intent)
-    }
-
-    private fun setUpServices(){
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -182,11 +177,8 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             dialog.dismiss()
             when(num){
                 // TODO: 01/12/2021 depending what error there is try request again
-                1->{}
-                2->{}
-                3->{}
-                4->{}
-                5->{}
+                1->{Util.requestTryAgain.postValue(1)}
+                2->{Util.requestTryAgain.postValue(2)}
             }
             errorDialogIsShowing = false
             Util.requestError.postValue(0)

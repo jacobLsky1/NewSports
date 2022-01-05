@@ -43,7 +43,7 @@ class H2HMatchesVisitorFragment(var match: Fixture):Fragment() {
             if(it!=null){
                 binding.visitorTeamMatchesRV.isVisible = true
                 binding.noMatchesToShowTV.isVisible = false
-                binding.visitorTeamMatchesRV.adapter = MatchesLiteAdapter(it.localResults.data,it.id)
+                binding.visitorTeamMatchesRV.adapter = MatchesLiteAdapter(it.localResults.data,it.id,false,requireContext())
             }else{
                 binding.visitorTeamMatchesRV.isVisible = false
                 binding.noMatchesToShowTV.isVisible = true

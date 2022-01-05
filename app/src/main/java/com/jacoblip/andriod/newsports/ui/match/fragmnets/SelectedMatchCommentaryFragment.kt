@@ -49,6 +49,10 @@ class SelectedMatchCommentaryFragment(var match:Fixture):Fragment() {
             }
         })
 
+        viewModel.isFetchingData.observe(viewLifecycleOwner,{
+            binding.progressBar9.isVisible = it
+        })
+
     }
 
     companion object{

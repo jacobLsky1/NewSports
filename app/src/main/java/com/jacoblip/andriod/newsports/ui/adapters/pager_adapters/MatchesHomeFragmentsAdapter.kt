@@ -26,7 +26,7 @@ class MatchesHomeFragmentsAdapter(fragmentManager: FragmentManager, val context:
                 val bundle = Bundle()
                 bundle.putString("from", DateTimeUtil.getCustomDate(-14))
                 bundle.putString("to", DateTimeUtil.getCustomDate(-1))
-                val fragment = MatchesRecentFragment.newInstance()
+                val fragment = MatchesRecentFragment.newInstance(DateTimeUtil.getCustomDate(-14), DateTimeUtil.getCustomDate(-1))
                 fragment.arguments = bundle
                 fragment
             }
@@ -34,7 +34,7 @@ class MatchesHomeFragmentsAdapter(fragmentManager: FragmentManager, val context:
                 val bundle = Bundle()
                 bundle.putString("from", DateTimeUtil.getCustomDate(0))
                 bundle.putString("to", DateTimeUtil.getCustomDate(14))
-                val fragment =MatchesUpcomingFragment.newInstance()
+                val fragment =MatchesUpcomingFragment.newInstance(DateTimeUtil.getCustomDate(0),DateTimeUtil.getCustomDate(14))
 
                 fragment.arguments = bundle
                 fragment

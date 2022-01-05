@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jacoblip.andriod.newsports.data.models.callbacks.MatchesCallback
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
+import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeague
 import com.jacoblip.andriod.newsports.data.services.repositorys.MainRepository
 import com.jacoblip.andriod.newsports.interfaces.MainRetrofitInstance
 import com.jacoblip.andriod.newsports.ui.main.fragments.matches.MatchesMainFragment
@@ -32,14 +33,15 @@ class MainViewModel
         MatchesMainFragment.newInstance())
     var mainFragmentCurrentFragment: LiveData<Fragment> = _mainFragmentCurrentFragment
 
-    private var _listOfUpcomingMatches:MutableLiveData<List<Fixture>> = MutableLiveData()
-    var  listOfUpcomingMatches:LiveData<List<Fixture>> = _listOfUpcomingMatches
+    private var _listOfUpcomingMatches:MutableLiveData<List<CustomLeague>> = MutableLiveData()
+    var  listOfUpcomingMatches:LiveData<List<CustomLeague>> = _listOfUpcomingMatches
 
-    private var _listOfRecentMatches:MutableLiveData<List<Fixture>> = MutableLiveData()
-    var  listOfRecentMatches:LiveData<List<Fixture>> = _listOfRecentMatches
+    private var _listOfRecentMatches:MutableLiveData<List<CustomLeague>> = MutableLiveData()
+    var  listOfRecentMatches:LiveData<List<CustomLeague>> = _listOfRecentMatches
 
     private var _isFetchingData:MutableLiveData<Boolean> = MutableLiveData(false)
     var isFetchingData:LiveData<Boolean> = _isFetchingData
+
 
 
     fun loadUpcomingMatchesFromServer(from:String,to:String){
@@ -48,7 +50,7 @@ class MainViewModel
         callback.enqueue(object : Callback<MatchesCallback> {
             override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
-                Util.requestError.postValue(1)
+                Util.requestError.postValue(2)
             }
 
             override fun onResponse(
@@ -61,19 +63,37 @@ class MainViewModel
                     if (matches != null) {
                         if (matches.data != null) {
                             if (matches.data.isNotEmpty()) {
-                                var list = matches.data
-                                list.sortBy { it.time.starting_at.date_time }
+                                var list = sortDataToLeagues(matches.data)
                                 _listOfUpcomingMatches.postValue(list)
                             } else {
-// TODO: 02/01/2022 handle error
+                                Util.requestError.postValue(2)
                             }
                         }
                     }
                 } else {
-// TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(2)
                 }
             }
         })
+    }
+
+    private fun sortDataToLeagues(matches:List<Fixture>):List<CustomLeague>{
+        val groupedId = matches.groupBy { it.league_id }
+
+        val leagues: ArrayList<CustomLeague>? = arrayListOf()
+        groupedId.forEach { (_, fixtures) ->
+            val league = fixtures[0].league!!.data
+            if (fixtures[0].round != null) {
+                league.round = fixtures[0].round!!.data
+            }
+            league.fixtures = fixtures.sortedByDescending { it.id }
+            leagues!!.add(league)
+        }
+
+        if (leagues != null) {
+            return leagues.toList()
+        }
+        return emptyList()
     }
 
     fun loadRecentMatchesFromServer(from:String,to:String){
@@ -95,18 +115,21 @@ class MainViewModel
                     if (matches != null) {
                         if (matches.data != null) {
                             if (matches.data.isNotEmpty()) {
-                                var list = matches.data
-                                list.sortBy { it.time.starting_at.date_time }
-                                _listOfRecentMatches.postValue(list.reversed())
+                                var list = sortDataToLeagues(matches.data)
+                                _listOfRecentMatches.postValue(list)
                             } else {
-// TODO: 02/01/2022 handle error
+                                Util.requestError.postValue(1)
                             }
                         }
                     }
                 } else {
-// TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(1)
                 }
             }
         })
     }
+
+
+
+
 }

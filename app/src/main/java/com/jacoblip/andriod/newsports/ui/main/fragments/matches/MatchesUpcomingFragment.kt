@@ -27,7 +27,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 @AndroidEntryPoint
-class MatchesUpcomingFragment: Fragment(){
+class MatchesUpcomingFragment(val from:String,val to:String): Fragment(){
 
     private lateinit var binding: MatchesFragmentUpcomingBinding
     lateinit var viewModel: MainViewModel
@@ -56,8 +56,6 @@ class MatchesUpcomingFragment: Fragment(){
             matchesRV.isVisible = true
             noMatches.isVisible = false
             swipeRefreshLayout!!.isRefreshing = false;
-            val from = requireArguments().getString("from")!!
-            val to = requireArguments().getString("to")!!
             viewModel.loadUpcomingMatchesFromServer(from,to)
         }
         setUpServices()
@@ -80,6 +78,12 @@ class MatchesUpcomingFragment: Fragment(){
         viewModel.isFetchingData.observe(viewLifecycleOwner,{
             binding.progressBar2.isVisible = it
         })
+
+        Util.requestTryAgain.observe(viewLifecycleOwner,{
+            if(it==2){
+                setUpFragment()
+            }
+        })
     }
 
     private fun setUpServices(){
@@ -87,16 +91,14 @@ class MatchesUpcomingFragment: Fragment(){
     }
 
     private fun setUpFragment(){
-        val from = requireArguments().getString("from")!!
-        val to = requireArguments().getString("to")!!
         viewModel.loadUpcomingMatchesFromServer(from,to)
     }
 
 
 
     companion object{
-        fun newInstance(): MatchesUpcomingFragment {
-            return MatchesUpcomingFragment()
+        fun newInstance(from:String,to:String): MatchesUpcomingFragment {
+            return MatchesUpcomingFragment(from,to)
         }
     }
 

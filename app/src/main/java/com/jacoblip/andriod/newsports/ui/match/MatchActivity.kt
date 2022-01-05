@@ -1,5 +1,6 @@
 package com.jacoblip.andriod.newsports.ui.match
 
+import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.ActivityMatchBinding
 import com.jacoblip.andriod.newsports.ui.match.fragmnets.SelectedMatchMainFragment
+import com.jacoblip.andriod.newsports.ui.team.TeamActivity
 import com.jacoblip.andriod.newsports.utilities.Util
 import com.jacoblip.andriod.newsports.utilities.internet.InternetConnectivity
 import com.jacoblip.andriod.newsports.utilities.internet.WifiReceiver
@@ -65,6 +67,29 @@ class MatchActivity : AppCompatActivity() {
         var homeScore = match.scores.localteam_score
         var visitorScore = match.scores.visitorteam_score
         scoreTV.text = "$homeScore : $visitorScore"
+
+        homeTeamIV.setOnClickListener {
+            val intent = Intent(applicationContext, TeamActivity::class.java)
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            intent.putExtra("team", homeTeam)
+
+            if(match.colors!=null)
+                intent.putExtra("color", match.colors!!.visitorteam.color)
+
+            startActivity(intent)
+        }
+        visitorTeamIV.setOnClickListener {
+            val intent = Intent(applicationContext, TeamActivity::class.java)
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            intent.putExtra("team", visitorTeam)
+
+            if(match.colors!=null)
+                intent.putExtra("color", match.colors!!.visitorteam.color)
+
+            startActivity(intent)
+        }
         setFragment()
     }
 
@@ -138,17 +163,10 @@ class MatchActivity : AppCompatActivity() {
         yesButton.setOnClickListener {
             dialog.dismiss()
             when (num) {
-                // TODO: 01/12/2021 depending what error there is try request again
-                1 -> {
-                }
-                2 -> {
-                }
-                3 -> {
-                }
-                4 -> {
-                }
-                5 -> {
-                }
+                7->{Util.requestTryAgain.postValue(7)}
+                8->{Util.requestTryAgain.postValue(8)}
+                9->{Util.requestTryAgain.postValue(9)}
+                10->{Util.requestTryAgain.postValue(10)}
             }
             errorDialogIsShowing = false
             Util.requestError.postValue(0)

@@ -43,7 +43,7 @@ class TeamMainFragment(var team:Team):Fragment() {
         binding.tabLayout.setupWithViewPager(binding.viewpager)
         binding.viewpager.isVisible = true
         binding.tabLayout.isVisible = true
-        binding.viewpager.offscreenPageLimit = 3
+        binding.viewpager.offscreenPageLimit = 4
         val scale = resources.displayMetrics.density
         binding.tabLayout.layoutParams.height = (36 * scale + 0.5F).toInt()
         binding.tabLayout.requestLayout()

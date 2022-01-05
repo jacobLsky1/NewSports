@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -15,6 +16,7 @@ import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.models.team.Team
 import com.jacoblip.andriod.newsports.data.services.viewmodels.TeamViewModel
 import com.jacoblip.andriod.newsports.databinding.TeamOverviewFragmentBinding
+import com.jacoblip.andriod.newsports.utilities.Util
 
 
 class TeamOverViewFragment(var team:Team):Fragment() {
@@ -107,6 +109,18 @@ class TeamOverViewFragment(var team:Team):Fragment() {
             binding.prevTeamBName.text = fixture.visitorTeam.data.name
             Glide.with(this).load(fixture.localTeam.data.logo_path).into(binding.prevTeamAImage)
             Glide.with(this).load(fixture.visitorTeam.data.logo_path).into(binding.prevTeamBImage)
+        })
+
+        Util.requestTryAgain.observe(viewLifecycleOwner,{
+            if(it==3){
+                viewModel.getTeamById(team.id)
+            }
+            if(it==4){
+                viewModel.getTeamMatchesById(team.id)
+            }
+        })
+        viewModel.isFetchingData.observe(viewLifecycleOwner,{
+            binding.progressbar6.isVisible = it
         })
     }
 

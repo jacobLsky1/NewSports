@@ -57,9 +57,10 @@ class StandingsAdapter(val standing:List<TeamStanding>,
 
             standingLayout.setOnClickListener {
                 val intent = Intent(context, TeamActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                intent.putExtra("team", team)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                intent.putExtra("team", team.team.data)
+                intent.putExtra("color","null")
                 context.startActivity(intent)
             }
             teamName.text = team.team_name

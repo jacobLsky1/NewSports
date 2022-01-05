@@ -1,5 +1,7 @@
 package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
+import com.jacoblip.andriod.newsports.ui.match.MatchActivity
 
-class MatchesLiteAdapter(val matches:List<Fixture>, private val currentTeamId:Long):RecyclerView.Adapter<MatchesLiteAdapter.MatchesLiteViewHolder>() {
+class MatchesLiteAdapter(val matches:List<Fixture>, private val currentTeamId:Long,val goToMatch:Boolean,val context: Context):RecyclerView.Adapter<MatchesLiteAdapter.MatchesLiteViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesLiteViewHolder {
@@ -92,6 +95,16 @@ class MatchesLiteAdapter(val matches:List<Fixture>, private val currentTeamId:Lo
                 teamAScore.text = match.scores.localteam_score.toString()
             }
             date.text = match.time.starting_at.date.drop(5)
+        }
+
+        if(goToMatch){
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, MatchActivity::class.java)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                intent.putExtra("match", match)
+                context.startActivity(intent)
+            }
         }
     }
 

@@ -7,5 +7,6 @@ class Util {
         var hasInternet: MutableLiveData<Boolean> = MutableLiveData()
         var problem:MutableLiveData<Boolean> = MutableLiveData()
         var requestError:MutableLiveData<Int> = MutableLiveData(0)
+        var requestTryAgain:MutableLiveData<Int> = MutableLiveData(0)
     }
 }

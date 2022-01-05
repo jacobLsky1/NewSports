@@ -152,17 +152,11 @@ class TeamActivity : AppCompatActivity() {
         yesButton.setOnClickListener {
             dialog.dismiss()
             when (num) {
-                // TODO: 01/12/2021 depending what error there is try request again
-                1 -> {
-                }
-                2 -> {
-                }
-                3 -> {
-                }
-                4 -> {
-                }
-                5 -> {
-                }
+                3->{Util.requestTryAgain.postValue(3)}
+                4->{Util.requestTryAgain.postValue(4)}
+                5->{Util.requestTryAgain.postValue(5)}
+                6->{Util.requestTryAgain.postValue(6)}
+                7->{Util.requestTryAgain.postValue(7)}
             }
             errorDialogIsShowing = false
             Util.requestError.postValue(0)

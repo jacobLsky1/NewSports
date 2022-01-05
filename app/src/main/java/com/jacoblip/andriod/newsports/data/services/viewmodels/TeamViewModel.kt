@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.jacoblip.andriod.newsports.data.models.callbacks.MatchCallback
 import com.jacoblip.andriod.newsports.data.models.callbacks.TeamCallback
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
+import com.jacoblip.andriod.newsports.data.models.seasons.players.PlayerRanking
 import com.jacoblip.andriod.newsports.data.models.team.Team
 import com.jacoblip.andriod.newsports.data.services.repositorys.MatchRepository
 import com.jacoblip.andriod.newsports.data.services.repositorys.TeamRepository
@@ -32,6 +33,15 @@ class TeamViewModel@Inject constructor(
     private var _preMatch: MutableLiveData<Fixture> = MutableLiveData()
     var preMatch: LiveData<Fixture> = _preMatch
 
+    private var _allTeamMatches:MutableLiveData<List<Fixture>> = MutableLiveData()
+    var allTeamMatches:LiveData<List<Fixture>> = _allTeamMatches
+
+    private var _upcomingTeamMatches:MutableLiveData<List<Fixture>> = MutableLiveData()
+    var upcomingTeamMatches:LiveData<List<Fixture>> = _upcomingTeamMatches
+
+    private var _teamSquad:MutableLiveData<List<PlayerRanking>> = MutableLiveData()
+    var teamSquad:LiveData<List<PlayerRanking>> = _teamSquad
+
     private var _isFetchingData:MutableLiveData<Boolean> = MutableLiveData(false)
     var isFetchingData:LiveData<Boolean> = _isFetchingData
 
@@ -41,7 +51,7 @@ class TeamViewModel@Inject constructor(
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
-                Util.requestError.postValue(1)
+                Util.requestError.postValue(3)
             }
 
             override fun onResponse(
@@ -53,7 +63,7 @@ class TeamViewModel@Inject constructor(
                     val responseTeam = response.body()!!.data
                     _team.postValue(responseTeam)
                 } else {
-                    // TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(3)
                 }
             }
         })
@@ -65,7 +75,7 @@ class TeamViewModel@Inject constructor(
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
-                Util.requestError.postValue(1)
+                Util.requestError.postValue(4)
             }
 
             override fun onResponse(
@@ -79,7 +89,82 @@ class TeamViewModel@Inject constructor(
                     val responsePreMatch = response.body()!!.data.latest.data[0]
                     _preMatch.postValue(responsePreMatch)
                 } else {
-                    // TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(4)
+                }
+            }
+        })
+    }
+
+    fun fetchResultsForTeam(teamId:Long,){
+        _isFetchingData.postValue(true)
+        val callback = MainRetrofitInstance.api.teamFixturesById(teamId)
+        callback.enqueue(object : Callback<TeamCallback> {
+            override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
+                _isFetchingData.postValue(false)
+                Util.requestError.postValue(5)
+            }
+
+            override fun onResponse(
+                call: Call<TeamCallback>,
+                response: Response<TeamCallback>
+            ) {
+                _isFetchingData.postValue(false)
+                if (response.isSuccessful) {
+                    val allFixtures: ArrayList<Fixture> = arrayListOf()
+                    allFixtures.addAll(response.body()!!.data.latest.data)
+                    _allTeamMatches.postValue(allFixtures)
+                } else {
+                    Util.requestError.postValue(5)
+                }
+            }
+        })
+    }
+
+    fun fetchUpcomingMatchesForTeam(teamId:Long,){
+        _isFetchingData.postValue(true)
+        val callback = MainRetrofitInstance.api.teamFixturesById(teamId)
+        callback.enqueue(object : Callback<TeamCallback> {
+            override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
+                _isFetchingData.postValue(false)
+                Util.requestError.postValue(6)
+            }
+
+            override fun onResponse(
+                call: Call<TeamCallback>,
+                response: Response<TeamCallback>
+            ) {
+                _isFetchingData.postValue(false)
+                if (response.isSuccessful) {
+                    val allFixtures: ArrayList<Fixture> = arrayListOf()
+                    allFixtures.addAll(response.body()!!.data.upcoming.data)
+                    _upcomingTeamMatches.postValue(allFixtures)
+                } else {
+                    Util.requestError.postValue(6)
+                }
+            }
+        })
+    }
+
+    fun fetchSquadForTeam(teamId:Long,){
+        _isFetchingData.postValue(true)
+        val callback = MainRetrofitInstance.api.teamSquadById(teamId)
+        callback.enqueue(object : Callback<TeamCallback> {
+            override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
+                _isFetchingData.postValue(false)
+                Util.requestError.postValue(7)
+            }
+
+            override fun onResponse(
+                call: Call<TeamCallback>,
+                response: Response<TeamCallback>
+            ) {
+                _isFetchingData.postValue(false)
+                if (response.isSuccessful) {
+                    val allPlayers: ArrayList<PlayerRanking> = arrayListOf()
+                    allPlayers.addAll(response.body()!!.data.squad.data)
+                    _teamSquad.postValue(allPlayers)
+                } else {
+                    Util.requestError.postValue(7)
                 }
             }
         })
