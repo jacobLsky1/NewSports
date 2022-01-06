@@ -18,7 +18,7 @@ class TeamSquadAdapter(private val players: List<PlayerRanking>):RecyclerView.Ad
 
     }
 
-        return PlayerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.squad_row_item, parent, false))
+        return PlayerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_squad_row, parent, false))
     }
 
     override fun getItemCount():Int {

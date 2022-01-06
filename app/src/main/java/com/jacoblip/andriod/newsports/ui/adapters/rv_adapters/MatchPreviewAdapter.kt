@@ -1,6 +1,5 @@
 package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,8 @@ class MatchPreviewAdapter(private val events: List<MatchPreviewItem>):RecyclerVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return when(viewType){
-        1 -> HomeEventViewHolder(LayoutInflater.from(parent.context!!).inflate(R.layout.match_preview_home_event_item, parent, false))
-        else -> AwayEventViewHolder(LayoutInflater.from(parent.context!!).inflate(R.layout.match_preview_away_event_item, parent, false))
+        1 -> HomeEventViewHolder(LayoutInflater.from(parent.context!!).inflate(R.layout.item_match_preview_home_event, parent, false))
+        else -> AwayEventViewHolder(LayoutInflater.from(parent.context!!).inflate(R.layout.item_match_preview_away_event, parent, false))
     }
     }
 

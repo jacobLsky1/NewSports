@@ -2,12 +2,10 @@ package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 
@@ -19,7 +17,7 @@ class H2HMatchesAdapter(val matches:List<Fixture>):RecyclerView.Adapter<H2HMatch
 
     }
 
-        return H2hMatchesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.h2h_row_item, parent, false))
+        return H2hMatchesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_h2h_row, parent, false))
     }
 
     override fun getItemCount():Int {

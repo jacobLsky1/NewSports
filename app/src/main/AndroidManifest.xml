@@ -15,7 +15,7 @@
         android:theme="@style/Theme.NewSports"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.LeagueDetailActivity"
+            android:name=".ui.leagues.LeagueDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.team.TeamActivity"

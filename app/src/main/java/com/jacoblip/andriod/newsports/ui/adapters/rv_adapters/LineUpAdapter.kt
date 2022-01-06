@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.fixture.lineup.Player
 
@@ -16,7 +15,7 @@ class LineUpAdapter(val players:List<Player>):RecyclerView.Adapter<LineUpAdapter
     when(viewType){
 
     }
-        return PlayerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.lineup_row_item, parent, false))
+        return PlayerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_lineup_row, parent, false))
     }
 
     override fun getItemCount():Int {

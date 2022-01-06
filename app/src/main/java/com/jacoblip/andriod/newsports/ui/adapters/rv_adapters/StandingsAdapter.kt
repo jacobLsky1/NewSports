@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 
-import com.jacoblip.andriod.newsports.data.models.standing.Standing
 import com.jacoblip.andriod.newsports.data.models.standing.TeamStanding
-import com.jacoblip.andriod.newsports.databinding.StandingRowItemBinding
 import com.jacoblip.andriod.newsports.ui.team.TeamActivity
 import java.util.*
 
@@ -30,7 +28,7 @@ class StandingsAdapter(val standing:List<TeamStanding>,
     when(viewType){
 
     }
-        return StandingsAdapterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.standing_row_item, parent, false))
+        return StandingsAdapterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_standing_row, parent, false))
     }
 
     override fun getItemCount():Int {

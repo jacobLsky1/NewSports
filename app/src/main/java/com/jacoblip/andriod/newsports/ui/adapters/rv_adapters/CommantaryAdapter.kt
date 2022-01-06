@@ -5,12 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.commentaries.Commentary
-import com.jacoblip.andriod.newsports.databinding.CommentaryRowItemBinding
 
 class CommantaryAdapter(val comments:List<Commentary>):RecyclerView.Adapter<CommantaryAdapter.LiveGameViewHolder>() {
 
@@ -18,7 +16,7 @@ class CommantaryAdapter(val comments:List<Commentary>):RecyclerView.Adapter<Comm
         when (viewType) {
 
         }
-        return LiveGameViewHolder(LayoutInflater.from(parent.context!!).inflate(R.layout.commentary_row_item, parent, false))
+        return LiveGameViewHolder(LayoutInflater.from(parent.context!!).inflate(R.layout.item_commentary_row, parent, false))
     }
 
     override fun getItemCount(): Int {

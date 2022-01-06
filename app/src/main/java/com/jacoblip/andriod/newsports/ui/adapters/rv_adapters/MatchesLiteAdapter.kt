@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.ui.match.MatchActivity
@@ -22,7 +21,7 @@ class MatchesLiteAdapter(val matches:List<Fixture>, private val currentTeamId:Lo
 
     }
 
-        return MatchesLiteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.fixture_lite_row_item, parent, false))
+        return MatchesLiteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_fixture_lite_row, parent, false))
     }
 
     override fun getItemCount():Int {

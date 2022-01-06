@@ -3,16 +3,13 @@ package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.expandablerecyclerview.ChildViewHolder
 import com.bignerdranch.expandablerecyclerview.ExpandableRecyclerAdapter
 import com.bignerdranch.expandablerecyclerview.ParentViewHolder
@@ -20,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeague
-import com.jacoblip.andriod.newsports.ui.LeagueDetailActivity
+import com.jacoblip.andriod.newsports.ui.leagues.LeagueDetailActivity
 import com.jacoblip.andriod.newsports.ui.match.MatchActivity
 import com.jacoblip.andriod.newsports.ui.team.TeamActivity
 
@@ -29,7 +26,7 @@ class SoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>,val contex
     : ExpandableRecyclerAdapter<CustomLeague, Fixture, SoccerMatchesAdapter.LeagueViewHolder, SoccerMatchesAdapter.FixtureViewHolder>(matchAdapterBundle) {
 
     override fun onCreateParentViewHolder(parentViewGroup: ViewGroup, viewType: Int): LeagueViewHolder {
-        return LeagueViewHolder(LayoutInflater.from(parentViewGroup.context!!).inflate(R.layout.competition_title_item, parentViewGroup, false))
+        return LeagueViewHolder(LayoutInflater.from(parentViewGroup.context!!).inflate(R.layout.item_competition_title, parentViewGroup, false))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
