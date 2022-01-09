@@ -1,6 +1,5 @@
 package com.jacoblip.andriod.newsports.ui.match.fragmnets
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import com.jacoblip.andriod.newsports.data.models.MatchPreviewItem
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedMatchTimelineBinding
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.MatchPreviewAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches.MatchPreviewAdapter
 
 
 class SelectedMatchTimeLineFragment(var match:Fixture):Fragment() {
@@ -93,7 +92,7 @@ class SelectedMatchTimeLineFragment(var match:Fixture):Fragment() {
                 matchPreviewItems.add(matchPreviewItem)
             }
 
-            matchPreviewItems.sortByDescending { it.time }
+            matchPreviewItems.sortBy { it.time }
 
             val awayAdapter = MatchPreviewAdapter(matchPreviewItems)
             binding.timeLineRV.layoutManager = LinearLayoutManager(context)

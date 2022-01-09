@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.H2hMatchesBinding
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.H2HMatchesAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches.H2HMatchesAdapter
 
 
 class H2HmatchesFragment(var match: Fixture):Fragment() {

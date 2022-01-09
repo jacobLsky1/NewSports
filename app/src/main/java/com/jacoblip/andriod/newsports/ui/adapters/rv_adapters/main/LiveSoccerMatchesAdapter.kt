@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
+package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.main
 
 import android.content.Context
 import android.content.Intent
@@ -22,8 +22,8 @@ import com.jacoblip.andriod.newsports.ui.match.MatchActivity
 import com.jacoblip.andriod.newsports.ui.team.TeamActivity
 
 
-class SoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>,val context: Context,val hasHappend:Boolean)
-    : ExpandableRecyclerAdapter<CustomLeague, Fixture, SoccerMatchesAdapter.LeagueViewHolder, SoccerMatchesAdapter.FixtureViewHolder>(matchAdapterBundle) {
+class LiveSoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>, val context: Context, val hasHappend:Boolean)
+    : ExpandableRecyclerAdapter<CustomLeague, Fixture, LiveSoccerMatchesAdapter.LeagueViewHolder, LiveSoccerMatchesAdapter.FixtureViewHolder>(matchAdapterBundle) {
 
     override fun onCreateParentViewHolder(parentViewGroup: ViewGroup, viewType: Int): LeagueViewHolder {
         return LeagueViewHolder(LayoutInflater.from(parentViewGroup.context!!).inflate(R.layout.item_competition_title, parentViewGroup, false))

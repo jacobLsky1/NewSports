@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedMatchStandingsBinding
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.StandingsAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches.StandingsAdapter
 
 
 class SelectedMatchStandingsFragment(var match:Fixture):Fragment() {

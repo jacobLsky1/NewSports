@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.tabs.TabLayout
 import com.jacoblip.andriod.newsports.data.models.leagues.Coverage
-import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeague
 import com.jacoblip.andriod.newsports.data.services.viewmodels.LeaguesViewModel
-import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedLeagueFragmentHomeBinding
 import com.jacoblip.andriod.newsports.ui.adapters.pager_adapters.SelectedLeagueFragmentsAdapter
-import com.jacoblip.andriod.newsports.ui.adapters.pager_adapters.SelectedMatchHomeFragmentsAdapter
+import com.jacoblip.andriod.newsports.utilities.Util
 
 
 class SelectedLeagueMainFragment(val seasonId: Long,val coverage: Coverage,val hasStandings:Boolean):Fragment() {
@@ -50,7 +47,12 @@ class SelectedLeagueMainFragment(val seasonId: Long,val coverage: Coverage,val h
     }
 
     fun setUpObservers(){
-
+        Util.requestTryAgain.observe(viewLifecycleOwner,{
+            if(it==12){
+                viewModel.getTopScorersForSeason(seasonId)
+                Util.requestTryAgain.postValue(0)
+            }
+        })
     }
 
     private fun setUpServices(){

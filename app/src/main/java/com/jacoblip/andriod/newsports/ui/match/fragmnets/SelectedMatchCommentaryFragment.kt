@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedMatchComentaryBinding
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.CommantaryAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches.CommantaryAdapter
 
 
 class SelectedMatchCommentaryFragment(var match:Fixture):Fragment() {

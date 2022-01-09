@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
+package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.leages
 
 import android.content.Context
 import android.content.Intent
@@ -18,8 +18,8 @@ import com.jacoblip.andriod.newsports.data.models.leagues.LeagueRoundHeader
 import com.jacoblip.andriod.newsports.ui.match.MatchActivity
 
 
-class LeagueMatchesUpcomingAdapter(val leagueHeaders: List<LeagueRoundHeader>, val context: Context, shouldOpenTeamDetails:Boolean)
-    : ExpandableRecyclerAdapter<LeagueRoundHeader, Fixture, LeagueMatchesUpcomingAdapter.LeagueViewHolder, LeagueMatchesUpcomingAdapter.FixtureViewHolder>(leagueHeaders) {
+class LeagueMatchesResultsAdapter(val leagueHeaders: List<LeagueRoundHeader>, val context: Context, shouldOpenTeamDetails:Boolean)
+    : ExpandableRecyclerAdapter<LeagueRoundHeader, Fixture, LeagueMatchesResultsAdapter.LeagueViewHolder, LeagueMatchesResultsAdapter.FixtureViewHolder>(leagueHeaders) {
 
     override fun onCreateParentViewHolder(parentViewGroup: ViewGroup, viewType: Int): LeagueViewHolder {
         return LeagueViewHolder(LayoutInflater.from(parentViewGroup.context!!).inflate(R.layout.item_league_round_row, parentViewGroup, false))

@@ -35,7 +35,7 @@
 
                 <ImageView
                     android:id="@+id/leagueImage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="16dp"
@@ -59,15 +59,6 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/country_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/font_regular"
-                        android:maxLines="1"
-                        android:textColor="@color/icon_tint_color"
-                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 

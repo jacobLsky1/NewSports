@@ -108,8 +108,10 @@ class MatchViewModel@Inject constructor(
             ) {
                 _isFetchingData.postValue(false)
                 if (response.isSuccessful) {
-                    val match = response.body()!!.data
-                    _matchCommentary.postValue(match)
+                    val match = response.body()!!.data.reversed()
+                    val allCommentary = arrayListOf<Commentary>()
+                    allCommentary.addAll(match)
+                    _matchCommentary.postValue(allCommentary)
                 } else {
                     // TODO: 02/01/2022 handle error
                 }

@@ -20,10 +20,6 @@ class SelectedLeagueFragmentsAdapter(
         if(withStandings) {
             return when (position) {
                 0 -> {
-                    val bundle = Bundle()
-                    bundle.putLong("season_id", seasonId)
-                    bundle.putLong("home_id", 0L)
-                    bundle.putLong("away_id", 0L)
                     SelectedLeagueStandingsFragment.newInstance(seasonId,coverage)
                 }
                 1 -> {

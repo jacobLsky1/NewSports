@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
+package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches
 
 import android.graphics.Typeface
 import android.view.LayoutInflater

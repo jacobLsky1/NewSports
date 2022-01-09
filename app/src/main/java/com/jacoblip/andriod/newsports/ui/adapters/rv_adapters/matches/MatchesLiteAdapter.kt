@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
+package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches
 
 import android.content.Context
 import android.content.Intent

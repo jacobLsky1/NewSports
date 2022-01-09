@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
+package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.leages
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.seasons.topscorers.CardScorer
-import com.jacoblip.andriod.newsports.data.models.seasons.topscorers.GoalScorer
 
 class TopCardScorerAdapter(val players:List<CardScorer>):RecyclerView.Adapter<TopCardScorerAdapter.TopScorerViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):TopScorerViewHolder  {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopScorerViewHolder {
     when(viewType){
 
     }

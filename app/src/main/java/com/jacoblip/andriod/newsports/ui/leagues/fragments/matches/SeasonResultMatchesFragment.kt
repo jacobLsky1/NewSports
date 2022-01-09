@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,8 +12,9 @@ import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.LeaguesViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedLeagueSeasonRecentMatchsBinding
 import com.jacoblip.andriod.newsports.interfaces.results
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.LeagueMatchesResultsAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.leages.LeagueMatchesResultsAdapter
 import com.jacoblip.andriod.newsports.utilities.API_KEY
+import com.jacoblip.andriod.newsports.utilities.Util
 import com.jacoblip.andriod.newsports.utilities.queryLimit
 
 
@@ -21,7 +23,7 @@ class SeasonResultMatchesFragment(val seasonId:Long):Fragment() {
     lateinit var binding: SelectedLeagueSeasonRecentMatchsBinding
     lateinit var viewModel: LeaguesViewModel
     private var currentPage = 1
-    private var matches: ArrayList<Fixture> = arrayListOf()
+    var url = ""
 
 
     override fun onCreateView(
@@ -32,7 +34,7 @@ class SeasonResultMatchesFragment(val seasonId:Long):Fragment() {
         binding = SelectedLeagueSeasonRecentMatchsBinding.inflate(LayoutInflater.from(requireContext()))
         val view = binding.root
         view.apply {
-            binding.MatchesRV.layoutManager = LinearLayoutManager(requireContext())
+            binding.recentMatchesRV.layoutManager = LinearLayoutManager(requireContext())
         }
         viewModel = ViewModelProvider(requireActivity()).get(LeaguesViewModel::class.java)
         setUpObservers()
@@ -46,16 +48,26 @@ class SeasonResultMatchesFragment(val seasonId:Long):Fragment() {
     fun setUpObservers(){
         viewModel.pastSeasonMatches.observe(viewLifecycleOwner,{
             if(!it.isNullOrEmpty()){
-                binding.MatchesRV.adapter = LeagueMatchesResultsAdapter(it,requireContext(),false)
+                binding.recentMatchesRV.isVisible = true
+                binding.textView12.isVisible = false
+                binding.recentMatchesRV.adapter = LeagueMatchesResultsAdapter(it,requireContext(),false)
             }else{
+                binding.recentMatchesRV.isVisible = false
+                binding.textView12.isVisible = true
+            }
+        })
 
+        Util.requestTryAgain.observe(viewLifecycleOwner ,{
+            if(it==13){
+                viewModel.getFutureSeasonMatches(url)
+                Util.requestTryAgain.postValue(0)
             }
         })
     }
 
     fun loadData(page: Int, isLoadingMore: Boolean) {
         currentPage += 1
-        val url = "seasons/$seasonId/?api_token=$API_KEY&include=results:limit($queryLimit|$page),$results,round"
+        url = "seasons/$seasonId/?api_token=$API_KEY&include=results:limit($queryLimit|$page),$results,round"
 
         if(isLoadingMore){
 

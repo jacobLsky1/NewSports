@@ -6,25 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.jacoblip.andriod.newsports.R
-import com.jacoblip.andriod.newsports.data.models.callbacks.MatchesCallback
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
 import com.jacoblip.andriod.newsports.databinding.MatchesFragmentUpcomingBinding
-import com.jacoblip.andriod.newsports.interfaces.MainRetrofitInstance
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.SoccerMatchesAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.main.SoccerMatchesAdapter
 import com.jacoblip.andriod.newsports.utilities.Util
 
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @AndroidEntryPoint
 class MatchesUpcomingFragment(val from:String,val to:String): Fragment(){

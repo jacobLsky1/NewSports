@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
+package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.team
 
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +25,7 @@ class TeamSquadAdapter(private val players: List<PlayerRanking>):RecyclerView.Ad
        return players.size
     }
 
-    override fun onBindViewHolder(holder:PlayerViewHolder , position: Int) {
+    override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
 
        val playerRanking = players[position]
 

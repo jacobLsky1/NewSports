@@ -179,6 +179,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 // TODO: 01/12/2021 depending what error there is try request again
                 1->{Util.requestTryAgain.postValue(1)}
                 2->{Util.requestTryAgain.postValue(2)}
+                15->{Util.requestTryAgain.postValue(15)}
             }
             errorDialogIsShowing = false
             Util.requestError.postValue(0)

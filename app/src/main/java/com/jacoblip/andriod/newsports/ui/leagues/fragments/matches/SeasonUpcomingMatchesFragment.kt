@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.LeaguesViewModel
-import com.jacoblip.andriod.newsports.databinding.SelectedLeagueSeasonRecentMatchsBinding
 import com.jacoblip.andriod.newsports.databinding.SelectedLeagueSeasonUpcomingMatchsBinding
 import com.jacoblip.andriod.newsports.interfaces.upcoming
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.LeagueMatchesResultsAdapter
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.LeagueMatchesUpcomingAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.leages.LeagueMatchesUpcomingAdapter
 import com.jacoblip.andriod.newsports.utilities.API_KEY
+import com.jacoblip.andriod.newsports.utilities.Util
 import com.jacoblip.andriod.newsports.utilities.queryLimit
 
 
@@ -23,7 +23,7 @@ class SeasonUpcomingMatchesFragment(val seasonId:Long):Fragment() {
     lateinit var binding: SelectedLeagueSeasonUpcomingMatchsBinding
     lateinit var viewModel: LeaguesViewModel
     private var currentPage = 1
-    private var matches: ArrayList<Fixture> = arrayListOf()
+    var url = ""
 
 
 
@@ -35,7 +35,7 @@ class SeasonUpcomingMatchesFragment(val seasonId:Long):Fragment() {
         binding = SelectedLeagueSeasonUpcomingMatchsBinding.inflate(LayoutInflater.from(requireContext()))
         val view = binding.root
         view.apply {
-            binding.MatchesRV.layoutManager = LinearLayoutManager(requireContext())
+            binding.upcomingMatchesRV.layoutManager = LinearLayoutManager(requireContext())
         }
         viewModel = ViewModelProvider(requireActivity()).get(LeaguesViewModel::class.java)
         setUpObservers()
@@ -48,7 +48,7 @@ class SeasonUpcomingMatchesFragment(val seasonId:Long):Fragment() {
 
     fun loadData(page: Int, isLoadingMore: Boolean) {
         currentPage += 1
-        val url = "seasons/$seasonId/?api_token=$API_KEY&include=upcoming:limit($queryLimit|$page),$upcoming,round"
+        url = "seasons/$seasonId/?api_token=$API_KEY&include=upcoming:limit($queryLimit|$page),$upcoming,round"
 
         if(isLoadingMore){
 
@@ -62,9 +62,19 @@ class SeasonUpcomingMatchesFragment(val seasonId:Long):Fragment() {
     fun setUpObservers(){
         viewModel.futureSeasonMatches.observe(viewLifecycleOwner,{
             if(!it.isNullOrEmpty()){
-                binding.MatchesRV.adapter = LeagueMatchesUpcomingAdapter(it,requireContext(),false)
+                binding.upcomingMatchesRV.isVisible = true
+                binding.textView3.isVisible = false
+                binding.upcomingMatchesRV.adapter = LeagueMatchesUpcomingAdapter(it,requireContext(),false)
             }else{
+                binding.upcomingMatchesRV.isVisible = false
+                binding.textView3.isVisible = true
+            }
+        })
 
+        Util.requestTryAgain.observe(viewLifecycleOwner,{
+            if(it==14){
+                viewModel.getFutureSeasonMatches(url)
+                Util.requestTryAgain.postValue(0)
             }
         })
     }

@@ -1,6 +1,5 @@
 package com.jacoblip.andriod.newsports.ui.leagues.fragments.topscores
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacoblip.andriod.newsports.data.services.viewmodels.LeaguesViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedLeagueSeasonTopGoalsFragmentBinding
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.TopGoalScorerAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.leages.TopGoalScorerAdapter
 
 
 class SeasonGoalScorersFragment():Fragment() {
@@ -37,7 +36,7 @@ class SeasonGoalScorersFragment():Fragment() {
 
     fun setUpObservers(){
         viewModel.topScorers.observe(viewLifecycleOwner,{
-            if(it!=null){
+            if(!it.goalscorers.data.isNullOrEmpty()){
                 binding.textView4.isVisible = false
                 binding.goalsRV.isVisible = true
                 binding.goalsRV.adapter = TopGoalScorerAdapter(it.goalscorers.data)

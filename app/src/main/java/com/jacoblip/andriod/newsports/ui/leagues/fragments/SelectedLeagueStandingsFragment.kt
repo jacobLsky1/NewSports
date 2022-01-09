@@ -1,18 +1,18 @@
 package com.jacoblip.andriod.newsports.ui.leagues.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacoblip.andriod.newsports.data.models.leagues.Coverage
-import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeague
 import com.jacoblip.andriod.newsports.data.services.viewmodels.LeaguesViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedLeagueFragmentStandingsBinding
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.StandingsAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches.StandingsAdapter
+import com.jacoblip.andriod.newsports.utilities.Util
 
 
 class SelectedLeagueStandingsFragment(val leagueId: Long,val coverage: Coverage):Fragment() {
@@ -40,7 +40,19 @@ class SelectedLeagueStandingsFragment(val leagueId: Long,val coverage: Coverage)
     fun setUpObservers(){
         viewModel.standings.observe(viewLifecycleOwner,{
             if(!it.isNullOrEmpty()){
+                binding.standingsRV.isVisible = true
+                binding.textView11.isVisible = false
                 binding.standingsRV.adapter = StandingsAdapter(it[0].standings.data, requireContext(), 0L, 0L)
+            }else{
+                binding.standingsRV.isVisible = false
+                binding.textView11.isVisible = true
+            }
+        })
+
+        Util.requestTryAgain.observe(viewLifecycleOwner,{
+            if(it==11){
+                viewModel.getStandingsForSeason(leagueId)
+                Util.requestTryAgain.postValue(0)
             }
         })
     }

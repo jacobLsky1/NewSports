@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,18 +13,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.callbacks.MatchesCallback
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeague
-import com.jacoblip.andriod.newsports.data.services.viewmodels.MainViewModel
 import com.jacoblip.andriod.newsports.databinding.ActivityDateMatchesBinding
-import com.jacoblip.andriod.newsports.databinding.ActivityMainBinding
 import com.jacoblip.andriod.newsports.interfaces.MainRetrofitInstance
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.SoccerMatchesAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.main.SoccerMatchesAdapter
 import com.jacoblip.andriod.newsports.utilities.Util
 import com.jacoblip.andriod.newsports.utilities.internet.InternetConnectivity
 import com.jacoblip.andriod.newsports.utilities.internet.WifiReceiver
@@ -58,9 +54,9 @@ class DateMatchesActivity : AppCompatActivity() {
         setUpObservers(this.findViewById(android.R.id.content)/*gets the content view*/)
         wifiReceiver = WifiReceiver()
         setSupportActionBar(binding.toolbar)
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
+       // if (supportActionBar != null) {
+       //     supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+       // }
 
         val date = intent.getStringExtra("date")
         val now = LocalDate.now()

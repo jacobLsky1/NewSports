@@ -51,7 +51,7 @@ class LeaguesViewModel@Inject constructor(
         call.enqueue( object : Callback<StandingsCallback> {
             override fun onFailure(call: Call<StandingsCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
-                Util.requestError.postValue(1)
+                Util.requestError.postValue(11)
             }
 
             override fun onResponse(call: Call<StandingsCallback>, response: Response<StandingsCallback>) {
@@ -60,7 +60,7 @@ class LeaguesViewModel@Inject constructor(
                     val match = response.body()!!.data
                     _standings.postValue(match)
                 } else {
-                    // TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(11)
                 }
             }
         })
@@ -71,7 +71,7 @@ class LeaguesViewModel@Inject constructor(
         call.enqueue( object : Callback<SeasonTopScorersCallback> {
             override fun onFailure(call: Call<SeasonTopScorersCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
-                Util.requestError.postValue(1)
+                Util.requestError.postValue(12)
             }
 
             override fun onResponse(call: Call<SeasonTopScorersCallback>, response: Response<SeasonTopScorersCallback>) {
@@ -80,7 +80,7 @@ class LeaguesViewModel@Inject constructor(
                     val match = response.body()!!.data
                     _topScorers.postValue(match)
                 } else {
-                    // TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(12)
                 }
             }
         })
@@ -92,7 +92,7 @@ class LeaguesViewModel@Inject constructor(
         call.enqueue( object : Callback<SeasonMatchesCallback> {
             override fun onFailure(call: Call<SeasonMatchesCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
-                Util.requestError.postValue(1)
+                Util.requestError.postValue(13)
             }
 
             override fun onResponse(call: Call<SeasonMatchesCallback>, response: Response<SeasonMatchesCallback>) {
@@ -112,11 +112,13 @@ class LeaguesViewModel@Inject constructor(
                             leagues.add(league)
                         }
                         _pastSeasonMatches.postValue(leagues)
+                    }else{
+                        _pastSeasonMatches.postValue(emptyList())
                     }
 
 
                 } else {
-                    // TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(13)
                 }
             }
         })
@@ -127,7 +129,7 @@ class LeaguesViewModel@Inject constructor(
         call.enqueue( object : Callback<SeasonMatchesCallback> {
             override fun onFailure(call: Call<SeasonMatchesCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
-                Util.requestError.postValue(1)
+                Util.requestError.postValue(14)
             }
 
             override fun onResponse(call: Call<SeasonMatchesCallback>, response: Response<SeasonMatchesCallback>) {
@@ -146,12 +148,14 @@ class LeaguesViewModel@Inject constructor(
                             leagues.add(league)
                         }
                         _futureSeasonMatches.postValue(leagues)
+                    }else{
+                        _futureSeasonMatches.postValue(emptyList())
                     }
 
 
 
                 } else {
-                    // TODO: 02/01/2022 handle error
+                    Util.requestError.postValue(14)
                 }
             }
         })

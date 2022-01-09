@@ -41,14 +41,14 @@ class LeagueDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.primary)
+            //window.navigationBarColor = ContextCompat.getColor(this, R.color.primary)
         }
         binding = ActivityLeagueDetailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         setUpObservers(this.findViewById(android.R.id.content)/*gets the content view*/)
         setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+       // supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = ""
         wifiReceiver = WifiReceiver()
 
@@ -122,8 +122,10 @@ class LeagueDetailActivity : AppCompatActivity() {
             dialog.dismiss()
             when(num){
                 // TODO: 01/12/2021 depending what error there is try request again
-                1->{Util.requestTryAgain.postValue(1)}
-                2->{Util.requestTryAgain.postValue(2)}
+                11->{Util.requestTryAgain.postValue(11)}
+                12->{Util.requestTryAgain.postValue(12)}
+                13->{Util.requestTryAgain.postValue(13)}
+                14->{Util.requestTryAgain.postValue(14)}
             }
             errorDialogIsShowing = false
             Util.requestError.postValue(0)

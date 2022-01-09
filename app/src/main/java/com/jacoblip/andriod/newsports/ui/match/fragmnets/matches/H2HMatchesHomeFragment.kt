@@ -1,6 +1,5 @@
 package com.jacoblip.andriod.newsports.ui.match.fragmnets.matches
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.services.viewmodels.MatchViewModel
 import com.jacoblip.andriod.newsports.databinding.H2hMatchsHomeBinding
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.H2HMatchesAdapter
-import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.MatchesLiteAdapter
+import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.matches.MatchesLiteAdapter
 
 
 class H2HMatchesHomeFragment(var match: Fixture):Fragment() {

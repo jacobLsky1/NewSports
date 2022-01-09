@@ -1,4 +1,4 @@
-package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters
+package com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.leages
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
-import com.jacoblip.andriod.newsports.data.models.seasons.topscorers.GoalScorer
+import com.jacoblip.andriod.newsports.data.models.seasons.topscorers.AssistScorer
 
-class TopGoalScorerAdapter(val players:List<GoalScorer>):RecyclerView.Adapter<TopGoalScorerAdapter.TopScorerViewHolder>() {
+class TopAssistsScorerAdapter(val players:List<AssistScorer>):RecyclerView.Adapter<TopAssistsScorerAdapter.TopScorerViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):TopScorerViewHolder  {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopScorerViewHolder {
     when(viewType){
 
     }
@@ -42,7 +42,7 @@ class TopGoalScorerAdapter(val players:List<GoalScorer>):RecyclerView.Adapter<To
             Glide.with(this).load(player.team.data.logo_path).into(teamFlag)
             teamName.text = player.player.data.common_name
             countryName.text = player.player.data.nationality
-            totals.text = player.goals.toString()
+            totals.text = player.assists.toString() + " assists"
             playerPosition.text = (position + 1).toString()
         }
     }
