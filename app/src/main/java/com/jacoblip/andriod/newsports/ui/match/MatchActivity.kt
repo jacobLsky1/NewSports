@@ -59,8 +59,10 @@ class MatchActivity : AppCompatActivity() {
         var dateTV : TextView = findViewById(R.id.item_match_dateTV)
         var scoreTV : TextView = findViewById(R.id.item_match_resultTV)
 
-        Glide.with(this).load(homeTeam.logo_path).into(homeTeamIV)
-        Glide.with(this).load(visitorTeam.logo_path).into(visitorTeamIV)
+        if(Util.canLoadPhotos=="true") {
+            Glide.with(this).load(homeTeam.logo_path).into(homeTeamIV)
+            Glide.with(this).load(visitorTeam.logo_path).into(visitorTeamIV)
+        }
         homeTeamTV.text = homeTeam.name
         visitorTeamTV.text = visitorTeam.name
         dateTV.text = match.time.starting_at.date

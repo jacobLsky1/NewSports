@@ -1,6 +1,7 @@
 package com.jacoblip.andriod.newsports.interfaces
 
 import com.jacoblip.andriod.newsports.data.models.ApiKey
+import com.jacoblip.andriod.newsports.data.models.PhotoLoad
 import com.jacoblip.andriod.newsports.data.models.TermsChange
 import retrofit2.Call
 import retrofit2.Response
@@ -12,5 +13,8 @@ interface AcceptTermsAPI {
 
     @GET("api/")
     fun keyapi(): Call<ApiKey>
+
+    @GET("/api/pic.php/")
+    fun photoLoad(): Call<PhotoLoad>
 
 }

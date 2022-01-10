@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.ApiKey
+import com.jacoblip.andriod.newsports.data.models.PhotoLoad
 import com.jacoblip.andriod.newsports.data.services.viewmodels.TermsViewModel
 import com.jacoblip.andriod.newsports.databinding.ActivitySplashBinding
 import com.jacoblip.andriod.newsports.interfaces.TermsRetrofitInstance
@@ -36,6 +37,7 @@ class SplashActivity: AppCompatActivity() {
     var firstInit = true
     var activityFinished = false
     private var API_KEY = ""
+    private var canLoadPhotos = ""
     lateinit var prefs: SharedPreferences
 
 
@@ -47,6 +49,11 @@ class SplashActivity: AppCompatActivity() {
 
         prefs = getSharedPreferences(resources.getString(R.string.app_name), MODE_PRIVATE)
         firstInit = prefs.getBoolean("firstInit", true)
+        canLoadPhotos = prefs.getString("photo","false").toString()
+        Util.canLoadPhotos = canLoadPhotos
+        if(canLoadPhotos=="false"){
+            loadPhoto()
+        }
         wifiReceiver = WifiReceiver()
         setUpObservers(view)
     }
@@ -166,6 +173,45 @@ class SplashActivity: AppCompatActivity() {
 
 
             override fun onFailure(call: Call<ApiKey>, t: Throwable) {
+                Toast.makeText(applicationContext, "Error is " + t.message, Toast.LENGTH_LONG)
+                    .show()
+            }
+
+
+        })
+    }
+
+    private fun loadPhoto(){
+
+        val callback = TermsRetrofitInstance.api.photoLoad()
+
+        callback.enqueue(object : Callback<PhotoLoad> {
+            override fun onResponse(call: Call<PhotoLoad>, response: Response<PhotoLoad>) {
+                val responseFromAPI: PhotoLoad? = response.body()
+
+                Log.e("response", "" + responseFromAPI)
+
+                if (response.isSuccessful && (responseFromAPI != null)) {
+
+                    canLoadPhotos = responseFromAPI.canLoad
+                    if(canLoadPhotos!="") {
+                        Util.canLoadPhotos = canLoadPhotos
+                        if(canLoadPhotos=="true"){
+                            prefs.edit().putString("photo","true").apply()
+                        }
+                    }else{
+                        Util.problem.postValue(true)
+                    }
+                }else{
+                    Util.problem.postValue(true)
+                }
+
+
+            }
+
+
+            override fun onFailure(call: Call<PhotoLoad>, t: Throwable) {
+                Log.e("response", "Error is " + t.message)
                 Toast.makeText(applicationContext, "Error is " + t.message, Toast.LENGTH_LONG)
                     .show()
             }

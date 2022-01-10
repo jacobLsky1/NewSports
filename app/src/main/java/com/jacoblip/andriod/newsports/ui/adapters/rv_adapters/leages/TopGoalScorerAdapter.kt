@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.seasons.topscorers.GoalScorer
+import com.jacoblip.andriod.newsports.utilities.Util
 
 class TopGoalScorerAdapter(val players:List<GoalScorer>):RecyclerView.Adapter<TopGoalScorerAdapter.TopScorerViewHolder>() {
 
@@ -38,8 +39,10 @@ class TopGoalScorerAdapter(val players:List<GoalScorer>):RecyclerView.Adapter<To
             var totals:TextView = findViewById(R.id.totals)
             var playerPosition:TextView = findViewById(R.id.position)
 
-            Glide.with(this).load(player.player.data.image_path).into(playerPic)
-            Glide.with(this).load(player.team.data.logo_path).into(teamFlag)
+            if(Util.canLoadPhotos=="true") {
+                Glide.with(this).load(player.player.data.image_path).into(playerPic)
+                Glide.with(this).load(player.team.data.logo_path).into(teamFlag)
+            }
             teamName.text = player.player.data.common_name
             countryName.text = player.player.data.nationality
             totals.text = player.goals.toString()

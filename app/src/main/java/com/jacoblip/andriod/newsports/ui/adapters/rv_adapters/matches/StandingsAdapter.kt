@@ -17,6 +17,7 @@ import com.jacoblip.andriod.newsports.R
 
 import com.jacoblip.andriod.newsports.data.models.standing.TeamStanding
 import com.jacoblip.andriod.newsports.ui.team.TeamActivity
+import com.jacoblip.andriod.newsports.utilities.Util
 import java.util.*
 
 class StandingsAdapter(val standing:List<TeamStanding>,
@@ -111,8 +112,10 @@ class StandingsAdapter(val standing:List<TeamStanding>,
                     ContextCompat.getDrawable(context, R.drawable.standings_unselected_team_bg)
             }
 
-            Glide.with(this).load(team.team.data.logo_path).placeholder(R.drawable.goals)
-                .into(teamFlag)
+            if(Util.canLoadPhotos=="true") {
+                Glide.with(this).load(team.team.data.logo_path).placeholder(R.drawable.goals)
+                    .into(teamFlag)
+            }
 
             val teamRecentForm = team.recent_form.split("").filter { it.isNotEmpty() }
             val teamForm = SpannableStringBuilder()

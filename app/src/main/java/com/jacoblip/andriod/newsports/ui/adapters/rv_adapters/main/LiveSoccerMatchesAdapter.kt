@@ -20,6 +20,7 @@ import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeague
 import com.jacoblip.andriod.newsports.ui.leagues.LeagueDetailActivity
 import com.jacoblip.andriod.newsports.ui.match.MatchActivity
 import com.jacoblip.andriod.newsports.ui.team.TeamActivity
+import com.jacoblip.andriod.newsports.utilities.Util
 
 
 class LiveSoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>, val context: Context, val hasHappend:Boolean)
@@ -58,8 +59,10 @@ class LiveSoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>, val c
                 var dateTV :TextView = findViewById(R.id.item_match_dateTV)
                 var scoreTV :TextView = findViewById(R.id.item_match_resultTV)
 
-                Glide.with(this).load(homeTeam.logo_path).into(homeTeamIV)
-                Glide.with(this).load(visitorTeam.logo_path).into(visitorTeamIV)
+                if(Util.canLoadPhotos=="true") {
+                    Glide.with(this).load(homeTeam.logo_path).into(homeTeamIV)
+                    Glide.with(this).load(visitorTeam.logo_path).into(visitorTeamIV)
+                }
                 homeTeamTV.text = homeTeam.name
                 visitorTeamTV.text = visitorTeam.name
                 var homeScore = match.scores.localteam_score
@@ -147,9 +150,11 @@ class LiveSoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>, val c
             } else {
                 competitionTitle.text = (league.country.data.name + " " + league.name).toUpperCase()
             }
-            Glide.with(context)
-                .load(league.logo_path)
-                .into(countryFlag)
+            if(Util.canLoadPhotos=="true") {
+                Glide.with(context)
+                    .load(league.logo_path)
+                    .into(countryFlag)
+            }
 
         }
     }

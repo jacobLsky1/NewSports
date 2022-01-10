@@ -16,6 +16,7 @@ import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.competitions.Competition
 import com.jacoblip.andriod.newsports.data.models.country.Country
 import com.jacoblip.andriod.newsports.ui.leagues.LeagueDetailActivity
+import com.jacoblip.andriod.newsports.utilities.Util
 
 
 class CountriesAdapter(private val countries: List<Country>, private val context: Context)
@@ -46,7 +47,10 @@ class CountriesAdapter(private val countries: List<Country>, private val context
                 var countryFlag:ImageView = findViewById(R.id.countryFlag)
                 var competitionsCount:TextView = findViewById(R.id.competitionsCount)
 
-                Glide.with(this).load(country.image_path).placeholder(R.drawable.ic_shipping_method_world_normal).into(countryFlag)
+                if(Util.canLoadPhotos=="true") {
+                    Glide.with(this).load(country.image_path)
+                        .placeholder(R.drawable.ic_shipping_method_world_normal).into(countryFlag)
+                }
                 countryName.text = country.name
                 competitionsCount.text = country.leagues.data.size.toString() + " competitions"
             }
@@ -67,7 +71,10 @@ class CountriesAdapter(private val countries: List<Country>, private val context
                 var leagueFlag:ImageView = findViewById(R.id.leagueFlag)
                 var leagueLayout:LinearLayout = findViewById(R.id.leagueLayout)
 
-                Glide.with(this).load(league.logo_path).placeholder(R.drawable.ic_shipping_method_world_normal).into(leagueFlag)
+                if(Util.canLoadPhotos=="true") {
+                    Glide.with(this).load(league.logo_path)
+                        .placeholder(R.drawable.ic_shipping_method_world_normal).into(leagueFlag)
+                }
                 leagueName.text = league.name
                 leagueLayout.setOnClickListener {
                     val intent = Intent(context, LeagueDetailActivity::class.java)

@@ -9,5 +9,6 @@ class Util {
         var requestError:MutableLiveData<Int> = MutableLiveData(0)
         var requestTryAgain:MutableLiveData<Int> = MutableLiveData(0)
         var API = ""
+        var canLoadPhotos = ""
     }
 }

@@ -59,7 +59,9 @@ class LeagueDetailActivity : AppCompatActivity() {
         leagueId = intent.getLongExtra("season_id", 0L)
         coverage = intent.getSerializableExtra("coverage") as Coverage
 
-        Glide.with(this).load(logoPath).placeholder(R.drawable.goals).into(binding.leagueImage)
+        if(Util.canLoadPhotos=="true") {
+            Glide.with(this).load(logoPath).placeholder(R.drawable.goals).into(binding.leagueImage)
+        }
         binding.leagueName.text = "$countryName $leagueName"
         setFragment()
     }

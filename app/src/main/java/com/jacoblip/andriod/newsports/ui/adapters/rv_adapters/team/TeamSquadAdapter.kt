@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.seasons.players.PlayerRanking
+import com.jacoblip.andriod.newsports.utilities.Util
 
 class TeamSquadAdapter(private val players: List<PlayerRanking>):RecyclerView.Adapter<TeamSquadAdapter.PlayerViewHolder>() {
 
@@ -36,7 +37,9 @@ class TeamSquadAdapter(private val players: List<PlayerRanking>):RecyclerView.Ad
             var playerCountry:TextView = findViewById(R.id.playerCountry)
             var positionName:TextView = findViewById(R.id.positionName)
 
-            Glide.with(this).load(playerRanking.player.data.image_path).into(playerPicture)
+            if(Util.canLoadPhotos=="true") {
+                Glide.with(this).load(playerRanking.player.data.image_path).into(playerPicture)
+            }
             teamName.text = playerRanking.player.data.common_name
             playerCountry.text = playerRanking.player.data.birthcountry
             if (playerRanking.position != null) {

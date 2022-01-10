@@ -88,7 +88,10 @@ class TeamActivity : AppCompatActivity() {
             }
 
 
-        Glide.with(this).load(team.logo_path).placeholder(R.drawable.goals).into(binding.leagueImage)
+        if(Util.canLoadPhotos=="true") {
+            Glide.with(this).load(team.logo_path).placeholder(R.drawable.goals)
+                .into(binding.leagueImage)
+        }
         binding.leagueName.text = team.name
 
 

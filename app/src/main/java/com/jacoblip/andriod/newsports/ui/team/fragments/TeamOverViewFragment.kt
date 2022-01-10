@@ -47,7 +47,9 @@ class TeamOverViewFragment(var team:Team):Fragment() {
             if(team!=null){
                 val venue = team.venue
                 if (venue != null) {
-                    Glide.with(this).load(venue.data.image_path).into(binding.venueImage)
+                    if(Util.canLoadPhotos=="true") {
+                        Glide.with(this).load(venue.data.image_path).into(binding.venueImage)
+                    }
                     binding.venueName.text = venue.data.name
                 }
 
@@ -59,7 +61,9 @@ class TeamOverViewFragment(var team:Team):Fragment() {
                 }
 
                 val coach = team.coach.data
-                Glide.with(this).load(coach.image_path).into(binding.coachImage)
+                if(Util.canLoadPhotos=="true") {
+                    Glide.with(this).load(coach.image_path).into(binding.coachImage)
+                }
                 binding.coachName.text = coach.common_name
 
                 if (team.founded != null && team.founded != 0) {
@@ -97,8 +101,11 @@ class TeamOverViewFragment(var team:Team):Fragment() {
             binding.nextMatchTime.text = fixture.time.starting_at.time
             binding.nextTeamAName.text = fixture.localTeam.data.name
             binding.nextTeamBName.text = fixture.visitorTeam.data.name
-            Glide.with(this).load(fixture.localTeam.data.logo_path).into(binding.nextTeamAImage)
-            Glide.with(this).load(fixture.visitorTeam.data.logo_path).into(binding.nextTeamBImage)
+            if(Util.canLoadPhotos=="true") {
+                Glide.with(this).load(fixture.localTeam.data.logo_path).into(binding.nextTeamAImage)
+                Glide.with(this).load(fixture.visitorTeam.data.logo_path)
+                    .into(binding.nextTeamBImage)
+            }
         })
 
         viewModel.preMatch.observe(viewLifecycleOwner,{fixture->
@@ -107,8 +114,11 @@ class TeamOverViewFragment(var team:Team):Fragment() {
             binding.prevAwayScore.text = fixture.scores.visitorteam_score.toString()
             binding.prevTeamAName.text = fixture.localTeam.data.name
             binding.prevTeamBName.text = fixture.visitorTeam.data.name
-            Glide.with(this).load(fixture.localTeam.data.logo_path).into(binding.prevTeamAImage)
-            Glide.with(this).load(fixture.visitorTeam.data.logo_path).into(binding.prevTeamBImage)
+            if(Util.canLoadPhotos=="true") {
+                Glide.with(this).load(fixture.localTeam.data.logo_path).into(binding.prevTeamAImage)
+                Glide.with(this).load(fixture.visitorTeam.data.logo_path)
+                    .into(binding.prevTeamBImage)
+            }
         })
 
         Util.requestTryAgain.observe(viewLifecycleOwner,{
