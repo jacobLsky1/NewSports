@@ -60,29 +60,39 @@
             app:layout_constraintTop_toBottomOf="@+id/item_match_visitor_teamIV"
             tools:text="visitorTeam" />
 
-        <TextView
-            android:id="@+id/item_match_dateTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:textColor="@color/second_degree_relevant"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/matchItemLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_match_visitor_teamIV"
             app:layout_constraintStart_toEndOf="@+id/item_match_home_teamIV"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="date of match" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/item_match_resultTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/item_match_dateTV"
-            app:layout_constraintStart_toStartOf="@+id/item_match_dateTV"
-            app:layout_constraintTop_toBottomOf="@+id/item_match_dateTV"
-            tools:text="0 : 1" />
+            <TextView
+                android:id="@+id/item_match_dateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:textColor="@color/second_degree_relevant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="date of match" />
+
+            <TextView
+                android:id="@+id/item_match_resultTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/item_match_dateTV"
+                app:layout_constraintStart_toStartOf="@+id/item_match_dateTV"
+                app:layout_constraintTop_toBottomOf="@+id/item_match_dateTV"
+                tools:text="0 : 1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

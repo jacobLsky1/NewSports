@@ -47,7 +47,7 @@ class TeamViewModel@Inject constructor(
 
     fun getTeamById(teamId:Long){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.teamOverviewById(teamId)
+        val callback = MainRetrofitInstance.api.teamOverviewById(teamId,Util.API)
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -71,7 +71,7 @@ class TeamViewModel@Inject constructor(
 
     fun getTeamMatchesById(teamId:Long){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.teamFixturesById(teamId)
+        val callback = MainRetrofitInstance.api.teamFixturesById(teamId,Util.API)
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -97,7 +97,7 @@ class TeamViewModel@Inject constructor(
 
     fun fetchResultsForTeam(teamId:Long,){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.teamFixturesById(teamId)
+        val callback = MainRetrofitInstance.api.teamFixturesById(teamId,Util.API)
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -122,7 +122,7 @@ class TeamViewModel@Inject constructor(
 
     fun fetchUpcomingMatchesForTeam(teamId:Long,){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.teamFixturesById(teamId)
+        val callback = MainRetrofitInstance.api.teamFixturesById(teamId,Util.API)
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -147,7 +147,7 @@ class TeamViewModel@Inject constructor(
 
     fun fetchSquadForTeam(teamId:Long,){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.teamSquadById(teamId)
+        val callback = MainRetrofitInstance.api.teamSquadById(teamId,Util.API)
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)

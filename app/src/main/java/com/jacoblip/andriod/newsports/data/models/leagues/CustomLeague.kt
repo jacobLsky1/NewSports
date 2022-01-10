@@ -1,11 +1,12 @@
 package com.jacoblip.andriod.newsports.data.models.leagues
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.country.CountryData
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.models.fixture.round.Round
 import com.bignerdranch.expandablerecyclerview.model.Parent
 import java.io.Serializable
-
+@Keep
 class CustomLeague(
     val id: Long,
     val active: Boolean,

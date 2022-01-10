@@ -41,7 +41,7 @@ class LeagueDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //window.navigationBarColor = ContextCompat.getColor(this, R.color.primary)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
         }
         binding = ActivityLeagueDetailBinding.inflate(layoutInflater)
         val view = binding.root

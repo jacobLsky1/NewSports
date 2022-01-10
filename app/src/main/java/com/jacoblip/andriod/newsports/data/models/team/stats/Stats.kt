@@ -1,9 +1,10 @@
 package com.jacoblip.andriod.newsports.data.models.team.stats
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.team.stats.ScoreStats
 import com.jacoblip.andriod.newsports.data.models.team.stats.ScoringMinsData
 import java.io.Serializable
-
+@Keep
 data class Stats(
     val team_id: Long,
     val season_id: Long,

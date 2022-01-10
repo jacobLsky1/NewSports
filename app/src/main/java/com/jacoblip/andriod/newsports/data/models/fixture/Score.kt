@@ -1,7 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models.fixture
 
+import androidx.annotation.Keep
 import java.io.Serializable
-
+@Keep
 class Score(
         val localteam_score: Int,
         val visitorteam_score: Int,

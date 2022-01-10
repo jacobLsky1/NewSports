@@ -16,11 +16,11 @@ class WifiReceiver() : BroadcastReceiver() {
         if (ConnectivityManager.CONNECTIVITY_ACTION == intent!!.action) {
             val noConnectivity: Boolean = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)
             if (noConnectivity) {
-                Toast.makeText(context, "Disconnected", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "Disconnected", Toast.LENGTH_SHORT).show()
                 Util.hasInternet.postValue(false)
 
             } else {
-                Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show()
                 Util.hasInternet.postValue(true)
             }
         }

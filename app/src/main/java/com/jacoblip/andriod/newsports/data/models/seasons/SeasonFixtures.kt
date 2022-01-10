@@ -1,8 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.seasons
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.callbacks.MatchesCallback
 
-
+@Keep
 class SeasonFixtures(
         val id: Long,
         val name: Boolean,

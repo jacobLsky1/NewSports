@@ -151,7 +151,7 @@ class DateMatchesActivity : AppCompatActivity() {
 
     fun loadMatchesByDateFromServer(date:String){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.fixturesForDate(date)
+        val callback = MainRetrofitInstance.api.fixturesForDate(date,Util.API)
         callback.enqueue(object : Callback<MatchesCallback> {
             override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
                 Util.requestError.postValue(1)

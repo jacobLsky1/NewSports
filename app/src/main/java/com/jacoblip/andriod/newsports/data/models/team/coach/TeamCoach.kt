@@ -1,7 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models.team.coach
 
+import androidx.annotation.Keep
 import java.io.Serializable
-
+@Keep
 class TeamCoach(
         val coach_id: Long,
         val team_id: Long,

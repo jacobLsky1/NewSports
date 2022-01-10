@@ -1,8 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.fixture.cards
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
-
+@Keep
 class Card(
         val id: Long,
         val team_id: String,

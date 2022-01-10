@@ -1,7 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.fixture.round
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
+@Keep
 data class Round(
         val id: Long,
         val name: Int,

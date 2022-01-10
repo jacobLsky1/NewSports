@@ -1,5 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models.team.ranking
 
+import androidx.annotation.Keep
+
+@Keep
 
 class UefaRanking(
         val team_id: Long,

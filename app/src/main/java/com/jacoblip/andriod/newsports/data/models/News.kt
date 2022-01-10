@@ -1,5 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models
 
+import androidx.annotation.Keep
+
+@Keep
 data class News(
         var article_id: String,
         var status: String? = "",

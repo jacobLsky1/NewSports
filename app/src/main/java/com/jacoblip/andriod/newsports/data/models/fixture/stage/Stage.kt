@@ -1,7 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.fixture.stage
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
+@Keep
 data class Stage(
         val id: Long,
         val name: String,

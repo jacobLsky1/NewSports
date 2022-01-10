@@ -1,8 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.seasons.topscorers
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
-
+@Keep
 class TopScorer(
         val id: Long,
         val league_id: Long,

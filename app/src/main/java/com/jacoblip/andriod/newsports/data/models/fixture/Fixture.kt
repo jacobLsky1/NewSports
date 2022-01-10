@@ -1,5 +1,6 @@
 package com.jacoblip.andriod.newsports.data.models.fixture
 
+import androidx.annotation.Keep
 import androidx.annotation.Nullable
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -14,12 +15,12 @@ import com.jacoblip.andriod.newsports.data.models.fixture.stats.StatsData
 import com.jacoblip.andriod.newsports.data.models.fixture.substitution.SubstitutionData
 import com.jacoblip.andriod.newsports.data.models.fixture.team.TeamData
 import com.jacoblip.andriod.newsports.data.models.fixture.time.Time
-import com.aroniez.futaa.models.fixture.venue.VenueData
+import com.jacoblip.andriod.newsports.data.models.fixture.venue.VenueData
 import com.jacoblip.andriod.newsports.data.models.fixture.weather.WeatherReport
 import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeague
 import com.jacoblip.andriod.newsports.data.models.leagues.CustomLeagueData
 import java.io.Serializable
-
+@Keep
 @Entity(tableName = "fixtures")
 data class Fixture(
     @PrimaryKey

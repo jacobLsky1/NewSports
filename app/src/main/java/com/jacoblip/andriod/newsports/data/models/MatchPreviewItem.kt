@@ -1,5 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models
 
+import androidx.annotation.Keep
+
+@Keep
 class MatchPreviewItem {
     var type: String? = "" //event could be goal, card or substitution
     var match_team: String? = "" //either home of away

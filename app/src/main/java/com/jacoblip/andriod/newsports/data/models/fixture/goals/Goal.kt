@@ -1,8 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.fixture.goals
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
-
+@Keep
 class Goal(
         val id: Long,
         val team_id: String,

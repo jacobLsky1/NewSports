@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bignerdranch.expandablerecyclerview.ChildViewHolder
 import com.bignerdranch.expandablerecyclerview.ExpandableRecyclerAdapter
 import com.bignerdranch.expandablerecyclerview.ParentViewHolder
@@ -57,6 +58,7 @@ class SoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>,val contex
                 var visitorTeamTV:TextView = findViewById(R.id.item_match_visitor_teamTV)
                 var dateTV :TextView = findViewById(R.id.item_match_dateTV)
                 var scoreTV :TextView = findViewById(R.id.item_match_resultTV)
+                var matchLayout :ConstraintLayout = findViewById(R.id.matchItemLayout)
 
                 Glide.with(this).load(homeTeam.logo_path).into(homeTeamIV)
                 Glide.with(this).load(visitorTeam.logo_path).into(visitorTeamIV)
@@ -85,6 +87,13 @@ class SoccerMatchesAdapter(val matchAdapterBundle: List<CustomLeague>,val contex
                     context.startActivity(intent)
                 }
                 dateTV.setOnClickListener {
+                    val intent = Intent(context, MatchActivity::class.java)
+                    // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    intent.putExtra("match", match)
+                    context.startActivity(intent)
+                }
+                matchLayout.setOnClickListener {
                     val intent = Intent(context, MatchActivity::class.java)
                     // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)

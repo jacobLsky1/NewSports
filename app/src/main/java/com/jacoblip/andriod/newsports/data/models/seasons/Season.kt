@@ -1,9 +1,10 @@
 package com.jacoblip.andriod.newsports.data.models.seasons
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.fixture.round.RoundData
 import com.jacoblip.andriod.newsports.data.models.fixture.stage.StageData
 
-
+@Keep
 class Season(
     val id: Long,
     val name: Boolean,

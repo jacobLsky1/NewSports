@@ -13,7 +13,6 @@ import com.jacoblip.andriod.newsports.data.services.viewmodels.LeaguesViewModel
 import com.jacoblip.andriod.newsports.databinding.SelectedLeagueSeasonUpcomingMatchsBinding
 import com.jacoblip.andriod.newsports.interfaces.upcoming
 import com.jacoblip.andriod.newsports.ui.adapters.rv_adapters.leages.LeagueMatchesUpcomingAdapter
-import com.jacoblip.andriod.newsports.utilities.API_KEY
 import com.jacoblip.andriod.newsports.utilities.Util
 import com.jacoblip.andriod.newsports.utilities.queryLimit
 
@@ -48,7 +47,7 @@ class SeasonUpcomingMatchesFragment(val seasonId:Long):Fragment() {
 
     fun loadData(page: Int, isLoadingMore: Boolean) {
         currentPage += 1
-        url = "seasons/$seasonId/?api_token=$API_KEY&include=upcoming:limit($queryLimit|$page),$upcoming,round"
+        url = "seasons/$seasonId/?api_token=${Util.API}&include=upcoming:limit($queryLimit|$page),$upcoming,round"
 
         if(isLoadingMore){
 

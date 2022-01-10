@@ -47,7 +47,7 @@ class MatchViewModel@Inject constructor(
 
     fun getMatchInQuestion(matchId:Long){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.fixturesById(matchId)
+        val callback = MainRetrofitInstance.api.fixturesById(matchId,Util.API)
         callback.enqueue(object : Callback<MatchCallback> {
             override fun onFailure(call: Call<MatchCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -71,7 +71,7 @@ class MatchViewModel@Inject constructor(
 
     fun getMatchStandings(seasonId:Long){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.standings(seasonId)
+        val callback = MainRetrofitInstance.api.standings(seasonId,Util.API)
         callback.enqueue(object : Callback<StandingsCallback> {
             override fun onFailure(call: Call<StandingsCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -95,7 +95,7 @@ class MatchViewModel@Inject constructor(
 
     fun getMatchCommentary(matchId:Long){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.commentary(matchId)
+        val callback = MainRetrofitInstance.api.commentary(matchId,Util.API)
         callback.enqueue(object : Callback<CommentariesCallback> {
             override fun onFailure(call: Call<CommentariesCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -121,7 +121,7 @@ class MatchViewModel@Inject constructor(
 
     fun getH2Hmatches(match:Fixture){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.getH2H(match.localteam_id, match.visitorteam_id)
+        val callback = MainRetrofitInstance.api.getH2H(match.localteam_id, match.visitorteam_id,Util.API)
         callback.enqueue(object : Callback<MatchesCallback> {
             override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -145,7 +145,7 @@ class MatchViewModel@Inject constructor(
 
     fun fetchHomeTeamDetailFromAPI(teamId:Long){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.teamResultsById(teamId)
+        val callback = MainRetrofitInstance.api.teamResultsById(teamId,Util.API)
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -169,7 +169,7 @@ class MatchViewModel@Inject constructor(
 
     fun fetchVisitorTeamDetailFromAPI(teamId:Long){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.teamResultsById(teamId)
+        val callback = MainRetrofitInstance.api.teamResultsById(teamId,Util.API)
         callback.enqueue(object : Callback<TeamCallback> {
             override fun onFailure(call: Call<TeamCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)

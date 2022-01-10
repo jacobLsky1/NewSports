@@ -1,9 +1,10 @@
 package com.jacoblip.andriod.newsports.data.models.standing
 
+import androidx.annotation.Keep
 import androidx.room.PrimaryKey
 import com.bignerdranch.expandablerecyclerview.model.Parent
 import java.io.Serializable
-
+@Keep
 class Standing(
         @PrimaryKey
         val id: Long,

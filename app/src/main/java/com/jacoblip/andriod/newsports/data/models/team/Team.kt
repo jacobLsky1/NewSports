@@ -1,15 +1,16 @@
 package com.jacoblip.andriod.newsports.data.models.team
 
+import androidx.annotation.Keep
 import androidx.annotation.Nullable
 import com.jacoblip.andriod.newsports.data.models.country.CountryData
 import com.jacoblip.andriod.newsports.data.models.fixture.FixturesData
-import com.aroniez.futaa.models.fixture.venue.VenueData
+import com.jacoblip.andriod.newsports.data.models.fixture.venue.VenueData
 import com.jacoblip.andriod.newsports.data.models.seasons.players.SquadData
 import com.jacoblip.andriod.newsports.data.models.team.coach.CoachData
 import com.jacoblip.andriod.newsports.data.models.team.ranking.UefaRankingData
 import com.jacoblip.andriod.newsports.data.models.team.transfers.TransfersData
 import java.io.Serializable
-
+@Keep
 
 class Team(
     val id: Long,

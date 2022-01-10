@@ -1,9 +1,10 @@
 package com.jacoblip.andriod.newsports.data.models.seasons.topscorers
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.fixture.lineup.PlayerData
 import com.jacoblip.andriod.newsports.data.models.fixture.team.TeamData
 
-
+@Keep
 class CardScorer(
     val position: Int,
     val season_id: Long,

@@ -1,9 +1,10 @@
 package com.jacoblip.andriod.newsports.data.models
 
+import androidx.annotation.Keep
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.ServerValue
 
-
+@Keep
 class User {
     var uid: String? = ""
     var name: String? = null

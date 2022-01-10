@@ -1,7 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models.fixture.venue
 
+import androidx.annotation.Keep
 import java.io.Serializable
-
+@Keep
 
 class Venue(
         val id: Long,

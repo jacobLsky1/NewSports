@@ -1,7 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models.players
 
+import androidx.annotation.Keep
 import java.io.Serializable
-
+@Keep
 
 class Player(
         val player_id: Int,

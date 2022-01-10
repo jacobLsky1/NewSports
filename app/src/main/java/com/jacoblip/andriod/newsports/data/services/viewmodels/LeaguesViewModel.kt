@@ -47,7 +47,7 @@ class LeaguesViewModel@Inject constructor(
     var topScorers: LiveData<TopScorer> = _topScorers
 
     fun getStandingsForSeason(seasonId:Long){
-        val call = MainRetrofitInstance.api.standings(seasonId)
+        val call = MainRetrofitInstance.api.standings(seasonId,Util.API)
         call.enqueue( object : Callback<StandingsCallback> {
             override fun onFailure(call: Call<StandingsCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -67,7 +67,7 @@ class LeaguesViewModel@Inject constructor(
     }
 
     fun getTopScorersForSeason(seasonId:Long){
-        val call = MainRetrofitInstance.api.seasonTopPlayers(seasonId)
+        val call = MainRetrofitInstance.api.seasonTopPlayers(seasonId,Util.API)
         call.enqueue( object : Callback<SeasonTopScorersCallback> {
             override fun onFailure(call: Call<SeasonTopScorersCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)

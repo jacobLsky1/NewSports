@@ -25,10 +25,10 @@
     <string name="promoted">Promoted</string>
     <string name="match_details">Match Details</string>
 
-    <string name="sample_company_description">Futaa Football live score. Football live scores on Scorama with 75+ Worldwide soccer leagues. live results, statistics, league tables, H2H and much more.</string>
-    <string name="sample_company_name">Futaa</string>
+    <string name="sample_company_description">Dbit Football live score. Football live scores with 75+ Worldwide soccer leagues. live results, statistics, league tables, H2H and much more.</string>
+    <string name="sample_company_name">Dbit</string>
     <string name="connect_with_us">Connect with US</string>
-    <string name="copyright_footer">\u00A9 Futaa 2019</string>
+    <string name="copyright_footer">\u00A9 Dbit 2022</string>
     <string name="upcoming_matches_title">Fixtures</string>
     <string name="live_matches_title">Live Matches</string>
     <string name="favorite_matches_title">Favorites</string>

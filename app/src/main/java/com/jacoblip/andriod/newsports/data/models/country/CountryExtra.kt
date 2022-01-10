@@ -1,8 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.country
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
-
+@Keep
 class CountryExtra(
         val continent: String,
         val sub_region: String,

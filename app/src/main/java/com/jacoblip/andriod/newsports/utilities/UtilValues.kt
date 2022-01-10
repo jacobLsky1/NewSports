@@ -1,7 +1,7 @@
 package com.jacoblip.andriod.newsports.utilities
 
+import androidx.annotation.Keep
 
-const val API_KEY = "9vvPM6pxz3sE6bhYSKuoE0d7y6EA3OUNI9VjV0ITgnTm0yXgZyWtzcoRPIUn"
 const val englishLang = "en"
 const val selectedLang = englishLang
 
@@ -25,6 +25,8 @@ const val playerLimit = ":limit($playersQueryLimit|1)"
 
 const val chatsBatchCount = 20
 
+
+ //TODO change the links to correct ones
 const val whatsappContact = "+972506745639"
 const val facebookLink = "https://web.facebook.com/ronolikeaaron"
 const val twitterLink = "http://twitter.com/Aroniez"

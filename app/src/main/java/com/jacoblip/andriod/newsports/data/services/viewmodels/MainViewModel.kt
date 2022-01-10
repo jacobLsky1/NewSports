@@ -54,7 +54,7 @@ class MainViewModel
 
     fun loadUpcomingMatchesFromServer(from:String,to:String){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.fixturesBetweenDates(from, to)
+        val callback = MainRetrofitInstance.api.fixturesBetweenDates(from, to,Util.API)
         callback.enqueue(object : Callback<MatchesCallback> {
             override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -106,7 +106,7 @@ class MainViewModel
 
     fun loadRecentMatchesFromServer(from:String,to:String){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.fixturesBetweenDates(from, to)
+        val callback = MainRetrofitInstance.api.fixturesBetweenDates(from, to,Util.API)
         callback.enqueue(object : Callback<MatchesCallback> {
             override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
                 Util.requestError.postValue(1)
@@ -139,7 +139,7 @@ class MainViewModel
 
     fun getAllCountriesFromServer(){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.countries()
+        val callback = MainRetrofitInstance.api.countries(Util.API)
         callback.enqueue(object : Callback<CountriesCallback> {
             override fun onFailure(call: Call<CountriesCallback>, t: Throwable) {
                 Util.requestError.postValue(1)
@@ -171,7 +171,7 @@ class MainViewModel
 
     fun loadLiveMatchesFromServer(){
         _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.livescoresNow()
+        val callback = MainRetrofitInstance.api.livescoresNow(Util.API)
         callback.enqueue(object : Callback<MatchesCallback> {
             override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
                 _isFetchingData.postValue(false)
@@ -190,42 +190,6 @@ class MainViewModel
                             if (matches.data.isNotEmpty()) {
                                 var list = sortDataToLeagues(matches.data)
                                 _listOfLiveMatches.postValue(list)
-                            } else {
-                                Util.requestError.postValue(15)
-                            }
-                        }
-                    }
-                } else {
-                    Util.requestError.postValue(15)
-                }
-            }
-        })
-    }
-
-
-    fun loadGameHighLightsFromServer(){
-        _isFetchingData.postValue(true)
-        val callback = MainRetrofitInstance.api.
-        callback.enqueue(object : Callback<MatchesCallback> {
-            override fun onFailure(call: Call<MatchesCallback>, t: Throwable) {
-                _isFetchingData.postValue(false)
-                Util.requestError.postValue(15)
-            }
-
-            override fun onResponse(
-                call: Call<MatchesCallback>,
-                response: Response<MatchesCallback>
-            ) {
-                _isFetchingData.postValue(false)
-                if (response.isSuccessful) {
-                    val matches = response.body()
-                    if (matches != null) {
-                        if (matches.data != null) {
-                            if (matches.data.isNotEmpty()) {
-                                var list = sortDataToLeagues(matches.data)
-                                _listOfLiveMatches.postValue(list)
-                            } else {
-                                Util.requestError.postValue(15)
                             }
                         }
                     }

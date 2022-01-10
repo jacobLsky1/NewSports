@@ -1,10 +1,11 @@
 package com.jacoblip.andriod.newsports.data.models
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.Competition
 import com.jacoblip.andriod.newsports.data.models.Side
 import com.jacoblip.andriod.newsports.data.models.Video
 import java.io.Serializable
-
+@Keep
 data class VideoHighlight(
     var title: String,
     var embed: String? = "",

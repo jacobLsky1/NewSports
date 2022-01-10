@@ -1,10 +1,11 @@
 package com.jacoblip.andriod.newsports.data.models.standing
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.fixture.team.TeamData
 import com.jacoblip.andriod.newsports.data.models.standing.StandingDetail
 import com.jacoblip.andriod.newsports.data.models.standing.StandingTotal
 import java.io.Serializable
-
+@Keep
 class TeamStanding(
     val position: Int,
     val team_id: Long,

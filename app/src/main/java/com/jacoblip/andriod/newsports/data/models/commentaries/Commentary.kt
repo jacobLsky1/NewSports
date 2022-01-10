@@ -1,5 +1,8 @@
 package com.jacoblip.andriod.newsports.data.models.commentaries
 
+import androidx.annotation.Keep
+
+@Keep
 
 data class Commentary(
         val fixture_id: Long,

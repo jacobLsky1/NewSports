@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.ApiKey
@@ -153,6 +152,7 @@ class SplashActivity: AppCompatActivity() {
 
                     API_KEY = responseFromAPI.api_key
                     if(API_KEY!="") {
+                        Util.API = API_KEY
                         viewModel.getTermsChange()
                     }else{
                         Util.problem.postValue(true)

@@ -1,8 +1,9 @@
 package com.jacoblip.andriod.newsports.data.models.fixture.lineup
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
-
+@Keep
 class Player(
         val team_id: Long,
         val fixture_id: Long,

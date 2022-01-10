@@ -1,5 +1,6 @@
 package com.jacoblip.andriod.newsports.data.models.competitions
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.jacoblip.andriod.newsports.data.models.country.CountryData
@@ -7,7 +8,7 @@ import com.jacoblip.andriod.newsports.data.models.fixture.round.Round
 import com.jacoblip.andriod.newsports.data.models.leagues.Coverage
 import com.jacoblip.andriod.newsports.data.models.seasons.SeasonData
 import java.io.Serializable
-
+@Keep
 @Entity(tableName = "competitions")
 class Competition(
     @PrimaryKey val id: Long,

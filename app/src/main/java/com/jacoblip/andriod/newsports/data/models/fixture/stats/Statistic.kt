@@ -1,10 +1,11 @@
 package com.jacoblip.andriod.newsports.data.models.fixture.stats
 
+import androidx.annotation.Keep
 import com.jacoblip.andriod.newsports.data.models.fixture.stats.Attack
 import com.jacoblip.andriod.newsports.data.models.fixture.stats.Pass
 import com.jacoblip.andriod.newsports.data.models.fixture.stats.Shot
 import java.io.Serializable
-
+@Keep
 data class Statistic(
     val team_id: Long,
     val fixture_id: Long,
