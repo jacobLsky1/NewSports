@@ -16,6 +16,7 @@ import com.jacoblip.andriod.newsports.R
 import com.jacoblip.andriod.newsports.data.models.fixture.Fixture
 import com.jacoblip.andriod.newsports.data.models.leagues.LeagueRoundHeader
 import com.jacoblip.andriod.newsports.ui.match.MatchActivity
+import com.jacoblip.andriod.newsports.utilities.Util
 
 
 class LeagueMatchesUpcomingAdapter(val leagueHeaders: List<LeagueRoundHeader>, val context: Context, shouldOpenTeamDetails:Boolean)

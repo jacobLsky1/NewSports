@@ -62,11 +62,12 @@ class SeasonResultMatchesFragment(val seasonId:Long):Fragment() {
                 Util.requestTryAgain.postValue(0)
             }
         })
+
     }
 
     fun loadData(page: Int, isLoadingMore: Boolean) {
         currentPage += 1
-        url = "seasons/$seasonId/?api_token=${Util.API}&include=results:limit($queryLimit|$page),$results,round"
+        url = "seasons/$seasonId/?api_token=${Util.API}&include=$results,round"
 
         if(isLoadingMore){
 

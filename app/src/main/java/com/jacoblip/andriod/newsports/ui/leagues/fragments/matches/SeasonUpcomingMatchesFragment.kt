@@ -47,7 +47,7 @@ class SeasonUpcomingMatchesFragment(val seasonId:Long):Fragment() {
 
     fun loadData(page: Int, isLoadingMore: Boolean) {
         currentPage += 1
-        url = "seasons/$seasonId/?api_token=${Util.API}&include=upcoming:limit($queryLimit|$page),$upcoming,round"
+        url = "seasons/$seasonId/?api_token=${Util.API}&include=$upcoming,round"
 
         if(isLoadingMore){
 
@@ -76,6 +76,7 @@ class SeasonUpcomingMatchesFragment(val seasonId:Long):Fragment() {
                 Util.requestTryAgain.postValue(0)
             }
         })
+
     }
 
     companion object{
